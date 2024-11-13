@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+}
+
+.banner {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.banner::before, .banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.banner::before {
+  background-image: url("img/background_image.png");
+  background-size: cover;
+  background-position: center;
+  animation: bgZoomIn 4s ease-in-out 1 forwards;
+}
+.banner::after {
+  background-image: url("img/frontground_image.png");
+  background-size: cover;
+  background-position: top;
+  transform: scale(2);
+  animation: bgZoomOut 4s ease-in-out 1 forwards;
+}
+.banner .clouds {
+  position: absolute;
+  inset: 0;
+  background-image: url("img/moving_clouds.png");
+  background-size: cover;
+  background-position: top left;
+  animation: moveClouds 100s alternate infinite;
+  z-index: 1;
+}
+@media (min-width: 1024px) {
+  .banner .clouds {
+    animation: moveCloudsPC 60s alternate infinite;
+    scale: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@keyframes moveClouds {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@keyframes moveCloudsPC {
+  0% {
+    background-position: top left;
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    background-position: top right;
+    transform: translateY(-5%) translateX(-5%);
+  }
+  100% {
+    background-position: top right;
+    transform: translateY(5%) translateX(5%);
+  }
+}
+@keyframes bgZoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+@keyframes bgZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+svg path {
+  fill: transparent;
+  stroke: #85D22C;
+  stroke-width: 1;
+  animation: textAnimation 4s ease-in-out 1 forwards;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  svg {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 100;
+    stroke-dasharray: 100;
+  }
+  60% {
+    fill: transparent;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    fill: #85D22C;
+    stroke-dasharray: 0;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

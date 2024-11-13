@@ -1,0 +1,154 @@
+// Global Variables
+$font-family: 'Roboto', sans-serif;
+$dark-green: #3C8500;
+$mid-green: #85D22C;
+$light-green: #B8F164;
+$yellow: #FFFE65;
+$white: #fff;
+$black: #040A00;
+$grey: #A6A6A6;
+
+// Variables for the banner
+$banner-height: 100vh;
+$zoom-animation-duration: 4s;
+$clouds-animation-duration: 100s;
+$clouds-animation-duration-pc: 60s;
+$stroke-color: $mid-green;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin absolute-full {
+    position: absolute;
+    inset: 0;
+}
+
+@mixin bg-image($url, $size: cover, $position: center) {
+    background-image: url($url);
+    background-size: $size;
+    background-position: $position;
+}
+
+// Styles
+
+body {
+    margin: 0;
+}
+
+// Banner styles
+
+.banner {
+    height: $banner-height;
+    @include flex-center;
+    position: relative;
+    overflow: hidden;
+
+    &::before, &::after {
+        content: '';
+        @include absolute-full;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    &::before {
+        @include bg-image('img/background_image.png');
+        animation: bgZoomIn $zoom-animation-duration ease-in-out 1 forwards;
+    }
+
+    &::after {
+        @include bg-image('img/frontground_image.png', cover, top);
+        transform: scale(2);
+        animation: bgZoomOut $zoom-animation-duration ease-in-out 1 forwards;
+    }
+
+    .clouds {
+        @include absolute-full;
+        @include bg-image('img/moving_clouds.png', cover, top left);
+        animation: moveClouds $clouds-animation-duration alternate infinite;
+        z-index: 1;
+
+        @media (min-width: 1024px) {
+            animation: moveCloudsPC $clouds-animation-duration-pc alternate infinite;
+            scale: 1.2;
+            @include flex-center;
+        }
+    }
+}
+
+@keyframes moveClouds {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@keyframes moveCloudsPC {
+    0% {
+        background-position: top left;
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        background-position: top right;
+        transform: translateY(-5%) translateX(-5%);
+    }
+    100% {
+        background-position: top right;
+        transform: translateY(5%) translateX(5%);
+    }
+}
+
+@keyframes bgZoomIn {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes bgZoomOut {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(2);
+    }
+}
+
+svg path {
+    fill: transparent;
+    stroke: $stroke-color;
+    stroke-width: 1;
+    animation: textAnimation $zoom-animation-duration ease-in-out 1 forwards;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    svg {
+        width: 80%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+@keyframes textAnimation {
+    0% {
+        stroke-dashoffset: 100;
+        stroke-dasharray: 100;
+    }
+    60% {
+        fill: transparent;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        fill: $stroke-color;
+        stroke-dasharray: 0;
+    }
+}

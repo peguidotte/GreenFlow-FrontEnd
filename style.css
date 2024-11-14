@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 body {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .banner {
@@ -27,6 +29,7 @@ body {
   background-image: url("img/frontground_image.png");
   background-size: cover;
   background-position: top;
+  opacity: 0.3;
   transform: scale(2);
   animation: bgZoomOut 4s ease-in-out 1 forwards;
 }
@@ -36,6 +39,7 @@ body {
   background-image: url("img/moving_clouds.png");
   background-size: cover;
   background-position: top left;
+  opacity: 0.7;
   animation: moveClouds 100s alternate infinite;
   z-index: 1;
 }
@@ -91,7 +95,7 @@ svg path {
   fill: transparent;
   stroke: #85D22C;
   stroke-width: 1;
-  animation: textAnimation 4s ease-in-out 1 forwards;
+  animation: textAnimation 4s ease-in-out 1 forwards, fadeOut 1s 4s ease-in-out 1 forwards;
   z-index: 1;
 }
 
@@ -116,6 +120,294 @@ svg path {
     fill: #85D22C;
     stroke-dasharray: 0;
   }
+}
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+.navbar {
+  opacity: 0;
+  padding: 10px 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 2s 5s ease-in-out 1 forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.nav-logo-container {
+  width: 20%;
+}
+
+.nav-logo {
+  width: 150%;
+}
+@media (min-width: 768px) {
+  .nav-logo {
+    width: 75%;
+  }
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  background-image: none;
+  padding: 5px;
+}
+@media (min-width: 1024px) {
+  .navbar-toggler {
+    display: none;
+  }
+}
+
+.navbar-toggler-icon {
+  background-image: url(img/menu-toggler.png);
+}
+
+@media (min-width: 1024px) {
+  .navbar-nav {
+    gap: 30px;
+  }
+}
+
+.nav-link {
+  color: #85D22C;
+  font-weight: 500;
+  font-size: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .nav-link {
+    font-size: 1.5rem;
+  }
+}
+.nav-link:hover {
+  color: #3C8500;
+}
+
+.navbar .nav-link.active {
+  color: #B8F164 !important;
+  scale: 1.1;
+}
+
+.hero {
+  position: absolute;
+  top: 25%;
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 2s 5s ease-in-out 1 forwards;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .hero h1 {
+    font-size: 3.75rem;
+  }
+}
+.hero p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  max-width: 270px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .hero p {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 764px) {
+  .hero p {
+    max-width: 450px;
+  }
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  z-index: -1;
+}
+.badges a img {
+  width: 60px;
+}
+@media screen and (min-width: 768px) {
+  .badges {
+    gap: 20px;
+  }
+  .badges a img {
+    width: 80px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .badges {
+    gap: 30px;
+  }
+}
+
+.badges a:nth-child(3),
+.badges a:nth-child(4) {
+  transform: translateY(140%);
+}
+
+.badges a:nth-child(2),
+.badges a:nth-child(5) {
+  transform: translateY(100%);
+}
+
+.badges a:first-child {
+  transform: translate(26%, 26%);
+}
+
+.badges a:last-child {
+  transform: translate(-26%, 26%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.scroll-btn button {
+  border: 2px solid #85D22C;
+  border-radius: 50px;
+  background-color: transparent;
+  color: #85D22C;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  position: absolute;
+  bottom: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease-in-out;
+}
+.scroll-btn button:hover {
+  border-color: #B8F164;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.tipos {
+  background-image: url("img/world-clean-energy-image.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+@media screen and (max-width: 768px) {
+  .tipos {
+    background-size: 160%;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .tipos {
+    background-size: 180%;
+  }
+}
+
+.cards {
+  margin-top: 120px;
+}
+@media screen and (min-width: 1024px) {
+  .cards {
+    margin-top: 150px;
+  }
+}
+
+.card-types {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 90%;
+  padding: 5px;
+  text-align: start;
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+  background-color: rgba(250, 250, 250, 0.8);
+}
+.card-types:hover {
+  background-color: #fff;
+}
+.card-types h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.card-types p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #040A00;
+}
+@media screen and (min-width: 764px) {
+  .card-types {
+    width: 70%;
+    padding: 10px;
+  }
+  .card-types h3 {
+    font-size: 1.6rem;
+  }
+  .card-types p {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .card-types:hover {
+    background-color: rgb(255, 255, 255);
+    width: 72%;
+  }
+}
+
+.card-left {
+  justify-content: flex-start;
+  margin-right: auto;
+  border: 2px solid #85D22C;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+@media screen and (min-width: 1024px) {
+  .card-left {
+    margin-left: auto;
+  }
+}
+.card-left h3 {
+  color: #85D22C;
+}
+
+.card-right {
+  justify-content: flex-start;
+  margin-left: auto;
+  border: 2px solid #3C8500;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+@media screen and (min-width: 1024px) {
+  .card-right {
+    margin-right: auto;
+  }
+}
+.card-right h3 {
+  color: #3C8500;
 }
 
 /*# sourceMappingURL=style.css.map */

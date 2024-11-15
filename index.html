@@ -47,7 +47,7 @@
             </svg>
         </div>
 
-        <!-- NavBar -->
+        <!--NavBar -->
         <header class="navbar navbar-expand-lg bg-transparent position-fixed fixed-top top-0">
             <nav class="container-fluid d-flex flex-row align-items-baseline p-3">
                 <a class="nav-logo-container" href="#">
@@ -119,56 +119,396 @@
     <section class="tipos">
         <div class="cards">
             <div class="card-types card-left card-solar">
-                <img src="badges/badge-solar.svg" alt="Energia Solar">
-                <div>
-                    <h3>Solar</h3>
-                    <p>É a energia proveniente da luz e do calor do Sol que é aproveitada e utilizada por meio de
-                        diferentes tecnologias.</p>
+                <div class="card-displayed" onclick="toggleCard(this)">
+                    <img src="badges/badge-solar.svg" alt="Energia Solar">
+                    <div>
+                        <div class="d-flex flex-row gap-2 align-items-baseline">
+                            <h3>Solar</h3>
+                            <p class="text-muted">clique para +</p>
+                        </div>
+                        <p>É a energia proveniente da luz e do calor do Sol que é aproveitada e utilizada por meio de
+                            diferentes tecnologias.</p>
+                    </div>
+                </div>
+                <div class="card-displayed-after px-1 pb-1">
+                    <div class="card-displayed-after-div">
+                        <h2>Descrição completa</h2>
+                        <p>A energia solar é obtida a partir da luz do sol, utilizada para gerar eletricidade e aquecer
+                            ambientes. Essa energia é captada por meio de painéis solares e coletores solares térmicos.
+
+                            Existem três principais tipos de sistemas:
+
+                            Energia Solar Fotovoltaica: Utiliza painéis fotovoltaicos para converter a luz solar
+                            diretamente
+                            em eletricidade.
+                            Energia Solar Térmica: Utiliza coletores solares para aquecer água e outros fluidos.
+                            Energia Solar Concentrada (CSP): Usa espelhos para concentrar a luz solar, gerando altas
+                            temperaturas para produzir eletricidade.
+                            A energia solar é renovável e abundante, mas sua eficiência depende da disponibilidade de
+                            luz
+                            solar e requer áreas extensas para instalação dos painéis.</p>
+                    </div>
+                    <div id="carousel-solar" class="carousel slide carousel-fade card-displayed-after-div">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/carrossel/solar-fotovoltaica.jpeg"
+                                    class="carousel-image carousel-image-left" alt="Energia Solar Fotovoltaica">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/solar-termica.jpeg" class="carousel-image carousel-image-left"
+                                    alt="Energia Solar Térmica">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/solar-concentrada.jpeg"
+                                    class="carousel-image carousel-image-left" alt="Energia solar concentrada">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-solar"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-solar"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="card-types card-right card-eolica">
-                <img src="badges/badge-eolic.svg" alt="Energia Eólica">
-                <div>
-                    <h3>Energia Eólica</h3>
-                    <p>É a energia cinética gerada pela força dos ventos, não
-                        emite gases poluentes e contribui para a redução do efeito estufa.</p>
+                <div class="card-displayed " onclick="toggleCard(this)">
+                    <img src="badges/badge-eolic.svg" alt="Energia Eólica">
+                    <div>
+                        <div class="d-flex flex-row gap-2 align-items-baseline">
+                            <h3>Eólica</h3>
+                            <p class="text-muted">clique para +</p>
+                        </div>
+                        <p>É a energia cinética gerada pela força dos ventos, não
+                            emite gases poluentes e contribui para a redução do efeito estufa.</p>
+                    </div>
+                </div>
+                <div class="card-displayed-after px-1 pb-1">
+                    <div class="card-displayed-after-div">
+                        <h2>Descrição completa</h2>
+                        <p>A energia eólica é obtida a partir do vento, que movimenta turbinas para gerar eletricidade.
+                            Essa
+                            energia é captada por meio de aerogeradores, instalados em parques eólicos terrestres ou
+                            offshore (no mar).
+
+                            Existem três principais tipos de sistemas:
+
+                            Parques Eólicos Terrestres: Instalações em terra firme, aproveitando áreas com ventos
+                            constantes.
+                            Parques Eólicos Offshore: Turbinas instaladas no mar, onde os ventos são mais fortes e
+                            constantes.
+                            Microturbinas Eólicas: Sistemas menores, usados para geração descentralizada de energia.
+                            A energia eólica é renovável e não poluente, mas a instalação de turbinas pode ter impactos
+                            visuais e afetar a fauna local, como aves.</p>
+                    </div>
+                    <div id="carousel-eolic" class="carousel slide carousel-fade card-displayed-after-div">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/carrossel/eolic-parque.jpeg" class="carousel-image carousel-image-right"
+                                    alt="Parques Eólicos Terrestres">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/eolic-mar.jpeg" class="carousel-image carousel-image-right"
+                                    alt="Parques eólicos offshore">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/eolic-micro.jpeg" class="carousel-image carousel-image-right"
+                                    alt="microturbinas eólicas">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-eolic"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-eolic"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="card-types card-left card-hidraulica">
-                <img src="badges/badge-hydraulic.svg" alt="Energia Hidráulica">
-                <div>
-                    <h3>Energia Hidráulica</h3>
-                    <p>É a energia gerada a partir do movimento das águas, como rios, lagos e mares. É uma fonte de
-                        energia limpa e renovável.</p>
+                <div class="card-displayed align-items-center" onclick="toggleCard(this)">
+                    <img src="badges/badge-hydraulic.svg" alt="Energia Hidráulica">
+                    <div>
+                        <div class="d-flex flex-row gap-2 align-items-baseline">
+                            <h3>Hidráulica</h3>
+                            <p class="text-muted">clique para +</p>
+                        </div>
+                        <p>É a energia gerada a partir do movimento das águas, como rios, lagos e mares. É uma fonte de
+                            energia limpa e renovável.</p>
+                    </div>
                 </div>
+                <div class="card-displayed-after px-1 pb-1">
+                    <div class="card-displayed-after-div">
+                        <h2>Descrição completa</h2>
+                        <p>A energia hidráulica é obtida a partir do movimento da água em rios e quedas d’água,
+                            utilizada
+                            para gerar eletricidade. Essa energia é aproveitada em usinas hidrelétricas e pequenas
+                            centrais
+                            hidrelétricas (PCHs).
+
+                            Existem três tipos principais de sistemas:
+
+                            Usinas de Reservatório: Utilizam represas para armazenar água e controlar o fluxo, acionando
+                            turbinas.
+                            Usinas a Fio d’Água: Aproveitam o fluxo natural do rio, sem necessidade de grandes represas.
+                            Pequenas Centrais (PCHs): Usinas menores com menor impacto ambiental.
+                            A energia hidráulica é renovável e eficiente, mas grandes represas podem causar alagamentos
+                            e
+                            afetar ecossistemas.</p>
+                    </div>
+                    <div id="carousel-hydro" class="carousel slide carousel-fade card-displayed-after-div">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/carrossel/hydro-reservatorio.jpeg"
+                                    class="carousel-image carousel-image-left" alt="Usinas de reservatório">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/hydro-fio.jpeg" class="carousel-image carousel-image-left"
+                                    alt="Usinas a fio d’Água">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/hydro-pch.jpg" class="carousel-image carousel-image-left"
+                                    alt="Pequenas centrais hidroelétricas">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-hydro"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-hydro"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
             <div class="card-types card-right card-biomassa">
-                <img src="badges/badge-biomass.svg" alt="Energia de Biomassa">
-                <div>
-                    <h3>Energia de Biomassa</h3>
-                    <p>É a energia proveniente da queima de materiais orgânicos, como resíduos agrícolas, florestais e
-                        urbanos.</p>
+                <div class="card-displayed align-items-center" onclick="toggleCard(this)">
+                    <img src="badges/badge-biomass.svg" alt="Energia de Biomassa">
+                    <div>
+                        <div class="d-flex flex-row gap-2 align-items-baseline">
+                            <h3>Biomassa</h3>
+                            <p class="text-muted">clique para +</p>
+                        </div>
+                        <p>É a energia proveniente da queima de materiais orgânicos, como resíduos agrícolas, florestais
+                            e
+                            urbanos.</p>
+                    </div>
+                </div>
+                <div class="card-displayed-after px-1 pb-1">
+                    <div class="card-displayed-after-div">
+                        <h2>Descrição completa</h2>
+                        <p>A energia de biomassa é obtida a partir de matéria orgânica, como resíduos agrícolas,
+                            florestais
+                            e industriais, utilizada para produzir eletricidade, calor e biocombustíveis. A biomassa é
+                            aproveitada por meio de processos como combustão direta, gaseificação e fermentação.
+
+                            Existem três principais formas de conversão:
+
+                            Combustão Direta: Queima de biomassa para gerar calor e eletricidade em usinas.
+                            Gaseificação: Converte biomassa em gás de síntese (syngas), que pode ser utilizado em
+                            turbinas.
+                            Fermentação: Utiliza microrganismos para transformar biomassa em biocombustíveis, como
+                            etanol.
+                            A energia de biomassa é renovável e pode ajudar na redução de resíduos, mas sua queima pode
+                            liberar gases, exigindo controle para minimizar impactos ambientais.</p>
+                    </div>
+                    <div id="carousel-biomass" class="carousel slide carousel-fade card-displayed-after-div">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/carrossel/biomass-combustao.jpg"
+                                    class="carousel-image carousel-image-right" alt="Combustão direta">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/biomass-gasificacao.png"
+                                    class="carousel-image carousel-image-right" alt="Gaseificação">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/carrossel/biomass-fermentacao.jpeg"
+                                    class="carousel-image carousel-image-right" alt="Fermentação">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-biomass"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-biomass"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="card-types card-left card-geotermica">
-                    <img src="badges/badge-geothermal.svg" alt="Energia Geotérmica">
-                    <div>
-                        <h3>Energia Geotérmica</h3>
-                        <p>É a energia proveniente do calor do interior da Terra, que é aproveitada e utilizada por meio de
-                            diferentes tecnologias.
-                        </p>
+                    <div class="card-displayed align-items-center" onclick="toggleCard(this)">
+                        <img src="badges/badge-geothermal.svg" alt="Energia Geotérmica">
+                        <div>
+                            <div class="d-flex flex-row gap-2 align-items-baseline">
+                                <h3>Geotérmica</h3>
+                                <p class="text-muted">clique para +</p>
+                            </div>
+                            <p>É a energia proveniente do calor do interior da Terra, que é aproveitada e utilizada por
+                                meio
+                                de
+                                diferentes tecnologias.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-displayed-after px-1 pb-1">
+                        <div class="card-displayed-after-div">
+                            <h2>Descrição completa</h2>
+                            <p>
+                                A energia geotérmica é obtida a partir do calor do interior da Terra, utilizado para
+                                gerar
+                                eletricidade e aquecer edifícios. Esse calor é aproveitado através de usinas geotérmicas
+                                e
+                                bombas de calor geotérmicas.
+
+                                Existem três tipos principais de sistemas:
+
+                                Usinas de Vapor Seco: Utilizam vapor diretamente do subsolo para acionar turbinas.
+                                Usinas de Flash: Aproveitam água quente que, ao subir, se transforma em vapor,
+                                movimentando
+                                turbinas.
+                                Usinas Binárias: Utilizam o calor para evaporar um fluido secundário, acionando a
+                                turbina.
+                                A energia geotérmica é renovável e eficiente, mas sua exploração é limitada a regiões
+                                com
+                                atividade geotérmica significativa.</p>
+                        </div>
+                        <div id="carousel-geo" class="carousel slide carousel-fade card-displayed-after-div">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="img/carrossel/geo-vapor.png" class="carousel-image carousel-image-left"
+                                        alt="Usina de vapor">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="img/carrossel/geo-flash.png" class="carousel-image carousel-image-left"
+                                        alt="Usina de flash">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-geo"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-geo"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-types card-right" id="card-maremotriz">
-                <img src="badges/badge-tidal.svg" alt="Energia Maremotriz">
-                <div>
-                    <h3>Energia Maremotriz</h3>
-                    <p>É a energia proveniente do movimento das marés, que é aproveitada e utilizada por meio de
-                    barragens de maré, turbinas de maré, etc.</p>
+                <div class="card-types card-right" id="card-maremotriz">
+                    <div class="card-displayed align-items-center" onclick="toggleCard(this)">
+                        <img src="badges/badge-tidal.svg" alt="Energia Maremotriz">
+                        <div>
+                            <div class="d-flex flex-row gap-2 align-items-baseline">
+                                <h3>Maremotriz</h3>
+                                <p class="text-muted">clique para +</p>
+                            </div>
+                            <p>É a energia proveniente do movimento das marés, que é aproveitada e utilizada por meio de
+                                barragens de maré, turbinas de maré, etc.</p>
+                        </div>
+                    </div>
+                    <div class="card-displayed-after px-1 pb-1">
+                        <div class="card-displayed-after-div">
+                            <h2>Descrição completa</h2>
+                            <p>A energia maremotriz é obtida a partir do movimento das marés, que
+                                ocorre devido à atração gravitacional entre a Terra, a Lua e o Sol. Esse tipo de energia
+                                é
+                                aproveitado por meio de barragens de maré, que funcionam como represas, e por turbinas
+                                submersas, que giram com o fluxo da água. Existem dois tipos principais de sistemas
+                                maremotrizes:
+
+                                Barragens de Maré: Utilizam diques para capturar a água durante a maré alta e liberá-la
+                                durante
+                                a maré baixa, movimentando turbinas e gerando eletricidade.
+                                Turbinas de Maré: Funcionam como turbinas eólicas submersas, sendo acionadas pelo fluxo
+                                das
+                                marés.
+                                A energia maremotriz é uma fonte renovável e previsível, uma vez que as marés seguem um
+                                padrão
+                                regular. No entanto, a instalação de sistemas maremotrizes pode ter impactos ambientais
+                                e
+                                exige
+                                altos custos iniciais, limitando seu uso a áreas com condições favoráveis, como
+                                estreitos e
+                                baías.</p>
+                        </div>
+                        <div id="carousel-tidal" class="carousel slide carousel-fade card-displayed-after-div">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="img/carrossel/mar-barragem.webp"
+                                        class="carousel-image carousel-image-right" alt="Barragem de maré">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="img/carrossel/mar-turbinas.jpeg"
+                                        class="carousel-image carousel-image-right" alt="Turbinas de maré">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-tidal"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-tidal"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+    </section>
+    <section id="beneficios-desafios">
+        <div class="cards-benef-desaf">
+            <div class="card-benef" onclick="toggleCardClick(this)">
+                <h3>Benefícios</h3>
+                <p>
+                    Os benefícios da energia limpa são inúmeros, destacando-se principalmente a <strong>redução das
+                        emissões de gases de efeito estufa</strong>, que contribui para combater as mudanças climáticas.
+                    Além disso, essas fontes de energia são <strong>renováveis e inesgotáveis</strong>, garantindo
+                    segurança energética a longo prazo. A energia limpa também gera <strong>menor impacto
+                        ambiental</strong>, evitando a poluição do ar e da água associada aos combustíveis fósseis.
+                    Outro benefício importante é a <strong>criação de empregos</strong>, impulsionando a economia verde
+                    e a inovação tecnológica. Por fim, a <strong>diversificação da matriz energética</strong> reduz a
+                    dependência de fontes poluentes e voláteis, trazendo estabilidade aos mercados de energia.
+                </p>
+
             </div>
+            <div class="card-desaf" onclick="toggleCardClick(this)">
+                <h3>Desafios</h3>
+                <p>
+                    Apesar dos muitos benefícios, a energia limpa enfrenta desafios significativos. Um dos maiores
+                    problemas é a <strong>dependência de condições naturais</strong>, como sol e vento, que podem ser
+                    intermitentes e imprevisíveis. Além disso, os <strong>altos custos iniciais de instalação</strong>
+                    de tecnologias como painéis solares e turbinas eólicas ainda são uma barreira para muitos países e
+                    comunidades. A <strong>armazenagem de energia</strong> também é um desafio, exigindo avanços em
+                    baterias e tecnologias de armazenamento para garantir fornecimento contínuo. Outro obstáculo é a
+                    <strong>infraestrutura existente</strong>, que muitas vezes precisa ser modernizada para suportar a
+                    integração de fontes renováveis. Por fim, há o <strong>impacto ambiental local</strong>, como a
+                    construção de hidrelétricas, que pode afetar ecossistemas e comunidades.
+                </p>
+
+            </div>
+        </div>
     </section>
 
 

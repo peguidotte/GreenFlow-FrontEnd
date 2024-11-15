@@ -39,6 +39,7 @@ $stroke-color: $mid-green;
 
 @mixin font-sizes($size: 1rem) {
     font-size: $size;
+
     @media screen and (min-width: 768px) {
         font-size: $size * 1.5;
     }
@@ -46,12 +47,15 @@ $stroke-color: $mid-green;
 
 @mixin translatesY($mobile, $tablet, $desktop, $higher) {
     transform: translateY($mobile);
+
     @media screen and (min-width: 768px) {
         transform: translateY($tablet);
     }
+
     @media screen and (min-width: 1024px) {
         transform: translateY($desktop);
     }
+
     @media screen and (min-width: 1300px) {
         transform: translateY($higher);
     }
@@ -224,6 +228,7 @@ svg path {
 
 .nav-logo {
     width: 150%;
+
     @media (min-width: 768px) {
         width: 75%;
     }
@@ -234,6 +239,7 @@ svg path {
     background-color: transparent;
     background-image: none;
     padding: 5px;
+
     @media (min-width: 1024px) {
         display: none;
     }
@@ -253,6 +259,7 @@ svg path {
     color: $mid-green;
     font-weight: 500;
     @include font-sizes();
+
     &:hover {
         color: $dark-green;
     }
@@ -286,6 +293,7 @@ svg path {
         margin-bottom: 20px;
         max-width: 270px;
         margin: 0 auto;
+
         @media screen and (min-width: 764px) {
             max-width: 450px;
         }
@@ -298,15 +306,19 @@ svg path {
     width: 100%;
     gap: 10px;
     z-index: -1;
+
     a img {
         width: 60px;
     }
+
     @media screen and (min-width: 768px) {
         gap: 20px;
+
         a img {
             width: 80px;
         }
     }
+
     @media screen and (min-width: 1024px) {
         gap: 30px;
     }
@@ -353,6 +365,7 @@ a {
         transform: translateX(-50%);
         @include flex-center;
         @include transition();
+
         &:hover {
             border-color: $light-green;
             color: $white;
@@ -380,16 +393,18 @@ a {
 
 .cards {
     margin-top: 120px;
+    margin-bottom: 120px;
+
     @media screen and (min-width: 1024px) {
         margin-top: 150px;
+        margin-bottom: 150px;
     }
 }
 
 .card-types {
     margin-bottom: 20px;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
     width: 90%;
     padding: 5px;
     text-align: start;
@@ -398,11 +413,11 @@ a {
     background-color: rgba(250, 250, 250, 0.8);
 
     &:hover {
-        background-color: $white;
+        background-color: rgba(250, 250, 250, 0.9);
     }
 
     h3 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 700;
         text-transform: uppercase;
     }
@@ -425,12 +440,29 @@ a {
             font-size: 1rem;
         }
     }
+}
 
-    @media screen and (min-width: 1024px) {
-        &:hover {
-            background-color: rgb(255, 255, 255);
-            width: 72%;
-        }
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes fadeInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50%) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
     }
 }
 
@@ -440,9 +472,19 @@ a {
     border: 2px solid $mid-green;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    opacity: 0; // Inicialmente invisível
+    transition: opacity 1s ease-out, transform 1s ease-out;
+
     @media screen and (min-width: 1024px) {
         margin-left: auto;
     }
+
+    &.fade-in-left {
+        opacity: 1;
+        transform: translateX(0);
+        animation: fadeInFromLeft 1s ease-out forwards;
+    }
+
     h3 {
         color: $mid-green;
     }
@@ -454,10 +496,189 @@ a {
     border: 2px solid $dark-green;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+    opacity: 0; // Inicialmente invisível
+    transition: opacity 1s ease-out, transform 1s ease-out;
+
     @media screen and (min-width: 1024px) {
         margin-right: auto;
     }
+
+    &.fade-in-right {
+        opacity: 1;
+        transform: translateX(0);
+        animation: fadeInFromRight 1s ease-out forwards;
+    }
+
     h3 {
         color: $dark-green;
+    }
+}
+
+.card-displayed {
+    display: flex;
+    gap: 20px;
+    align-items: bottom;
+}
+
+.card-displayed-after {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+
+    h2 {
+        @include font-sizes(0.9rem);
+        font-weight: 700;
+        color: $black;
+    }
+
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 10px;
+
+    }
+}
+
+.card-displayed-after.show {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+.card-displayed-after-div {
+    @media screen and (min-width: 1024px) {
+        width: 50%;
+    }
+    
+}
+
+// Types Section - Carrossel
+
+.carousel-image {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+
+    @media screen and (min-width: 768px) {
+        height: 400px;
+    }
+}
+
+.carousel-image-left {
+    border-bottom-right-radius: 30px;
+}
+
+.carousel-image-right {
+    border-bottom-left-radius: 30px;
+}
+
+// Benefits and Challenges Section
+
+#beneficios-desafios{
+    width: auto;
+    height: calc(100vh - 90px);
+    @media screen and (min-width: 1024px) {
+        height: calc(100vh - 110px);
+    }
+}
+
+.cards-benef-desaf{
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    padding: 4%;
+    height: 100%;
+
+    @media screen and (min-width: 1024px) {
+        flex-direction: row;
+    }
+
+
+    p{
+        font-size: 1rem;
+        font-weight: 300;
+        color: $white;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+}
+
+.card-benef, .card-desaf{
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 50%;
+    h3{
+        @include font-sizes(2rem)
+    }
+    p{
+        display: none;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 50%;
+        height: 100%;
+        transition: all 0.5s ease-in-out;
+        &:hover {
+            width: 140%;
+            h3 {
+                animation: fontScaleUp 1s ease-in forwards;
+            }
+            p {
+                animation: fadeIn 2s ease-in forwards;
+                display: block;
+            }
+        }
+        &:not(:hover) {
+            width: 50%;
+            h3 {
+                animation: fontScaleDown 1s ease-in forwards;
+            }
+            p {
+                animation: fadeOut 1s ease-in forwards;
+            }
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        &.clicked {
+            height: auto;
+            p {
+                display: block;
+                animation: fadeIn 2s ease-in forwards;
+            }
+        }
+    }
+}
+
+@keyframes fontScaleUp {
+    to {
+        @include font-sizes(4rem);
+    }
+}
+
+
+.card-benef{
+    border: 4px solid $light-green;
+    background-image: url('img/background_image_benefits.svg');
+    background-size: cover;
+    background-position: center;
+    h3{
+        color: $light-green;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+}
+
+.card-desaf{
+    border: 4px solid $mid-green;
+    background-image: url('img/background_image_challenge.svg');
+    background-size: cover;
+    background-position: center;
+    h3 {
+        color: $mid-green;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
     }
 }

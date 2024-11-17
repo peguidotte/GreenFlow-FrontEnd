@@ -11,7 +11,6 @@ function toggleCard(element) {
         });
         cardAfter.classList.add('show');
         // Centralizar o elemento na tela
-        
     }
 }
 
@@ -38,6 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Scrollspy manual
+    const sections = document.querySelectorAll('section');
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Ajuste conforme necessário
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navItems.forEach(nav => {
+                    nav.classList.remove('active');
+                    if (nav.getAttribute('href') === `#${id}`) {
+                        nav.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, options);
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
 
     var observerOptions = {

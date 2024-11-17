@@ -1,3 +1,5 @@
+AOS.init();
+
 function toggleCard(element) {
     var cardAfter = element.nextElementSibling;
     if (cardAfter.classList.contains('show')) {
@@ -9,7 +11,7 @@ function toggleCard(element) {
         });
         cardAfter.classList.add('show');
         // Centralizar o elemento na tela
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
     }
 }
 

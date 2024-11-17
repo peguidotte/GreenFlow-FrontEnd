@@ -1,6 +1,81 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@keyframes moveClouds {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@keyframes moveCloudsPC {
+  0% {
+    background-position: top left;
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    background-position: top right;
+    transform: translateY(-5%) translateX(-5%);
+  }
+  100% {
+    background-position: top right;
+    transform: translateY(5%) translateX(5%);
+  }
+}
+@keyframes bgZoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+@keyframes bgZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 100;
+    stroke-dasharray: 100;
+  }
+  60% {
+    fill: transparent;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    fill: #85d22c;
+    stroke-dasharray: 0;
+  }
+}
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fontScaleUp {
+  to {
+    font-size: 4rem;
+  }
+}
+html,
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   font-family: "Poppins", sans-serif;
 }
 
@@ -53,47 +128,9 @@ body {
   }
 }
 
-@keyframes moveClouds {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-@keyframes moveCloudsPC {
-  0% {
-    background-position: top left;
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    background-position: top right;
-    transform: translateY(-5%) translateX(-5%);
-  }
-  100% {
-    background-position: top right;
-    transform: translateY(5%) translateX(5%);
-  }
-}
-@keyframes bgZoomIn {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.2);
-  }
-}
-@keyframes bgZoomOut {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(2);
-  }
-}
 svg path {
   fill: transparent;
-  stroke: #85D22C;
+  stroke: #85d22c;
   stroke-width: 1;
   animation: textAnimation 4s ease-in-out 1 forwards, fadeOut 1s 4s ease-in-out 1 forwards;
   z-index: 1;
@@ -107,41 +144,17 @@ svg path {
     margin: 0 auto;
   }
 }
-@keyframes textAnimation {
-  0% {
-    stroke-dashoffset: 100;
-    stroke-dasharray: 100;
-  }
-  60% {
-    fill: transparent;
-    stroke-dashoffset: 0;
-  }
-  100% {
-    fill: #85D22C;
-    stroke-dasharray: 0;
-  }
-}
-@keyframes fadeOut {
-  100% {
-    opacity: 0;
-    display: none;
-  }
-}
 .navbar {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   opacity: 0;
   padding: 10px 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   animation: fadeIn 2s 5s ease-in-out 1 forwards;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .nav-logo-container {
   width: 20%;
 }
@@ -178,7 +191,7 @@ svg path {
 }
 
 .nav-link {
-  color: #85D22C;
+  color: #85d22c;
   font-weight: 500;
   font-size: 1rem;
 }
@@ -188,11 +201,11 @@ svg path {
   }
 }
 .nav-link:hover {
-  color: #3C8500;
+  color: #3c8500;
 }
 
 .navbar .nav-link.active {
-  color: #B8F164 !important;
+  color: #b8f164 !important;
   scale: 1.1;
 }
 
@@ -282,10 +295,10 @@ a {
 }
 
 .scroll-btn button {
-  border: 2px solid #85D22C;
+  border: 2px solid #85d22c;
   border-radius: 50px;
   background-color: transparent;
-  color: #85D22C;
+  color: #85d22c;
   padding: 10px 20px;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
@@ -301,7 +314,7 @@ a {
   transition: all 1s ease-in-out;
 }
 .scroll-btn button:hover {
-  border-color: #B8F164;
+  border-color: #b8f164;
   color: #fff;
   font-size: 1.1rem;
 }
@@ -358,7 +371,7 @@ a {
 .card-types p {
   font-size: 0.8rem;
   font-weight: 300;
-  color: #040A00;
+  color: #040a00;
 }
 @media screen and (min-width: 764px) {
   .card-types {
@@ -373,70 +386,42 @@ a {
   }
 }
 
-@keyframes fadeInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-@keyframes fadeInFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(50%) scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-.card-left {
+.card-left,
+.card-right {
   justify-content: flex-start;
-  margin-right: auto;
-  border: 2px solid #85D22C;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-  opacity: 0;
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  opacity: 1;
 }
 @media screen and (min-width: 1024px) {
-  .card-left {
+  .card-left,
+  .card-right {
     margin-left: auto;
   }
 }
-.card-left.fade-in-left {
-  opacity: 1;
-  transform: translateX(0);
-  animation: fadeInFromLeft 1s ease-out forwards;
+
+.card-left {
+  margin-right: auto;
+  border: 2px solid #85d22c;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 .card-left h3 {
-  color: #85D22C;
+  color: #85d22c;
 }
 
 .card-right {
-  justify-content: flex-start;
   margin-left: auto;
-  border: 2px solid #3C8500;
+  border: 2px solid #3c8500;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  opacity: 0;
-  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 @media screen and (min-width: 1024px) {
   .card-right {
+    margin-left: auto;
     margin-right: auto;
   }
 }
-.card-right.fade-in-right {
-  opacity: 1;
-  transform: translateX(0);
-  animation: fadeInFromRight 1s ease-out forwards;
-}
 .card-right h3 {
-  color: #3C8500;
+  color: #3c8500;
 }
 
 .card-displayed {
@@ -454,12 +439,7 @@ a {
 .card-displayed-after h2 {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #040A00;
-}
-@media screen and (min-width: 768px) {
-  .card-displayed-after h2 {
-    font-size: 1.35rem;
-  }
+  color: #040a00;
 }
 @media screen and (min-width: 1024px) {
   .card-displayed-after {
@@ -517,7 +497,7 @@ a {
   padding: 4%;
   height: 100%;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
   .cards-benef-desaf {
     flex-direction: row;
   }
@@ -530,7 +510,8 @@ a {
   text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
-.card-benef, .card-desaf {
+.card-benef,
+.card-desaf {
   padding: 20px;
   border-radius: 20px;
   display: flex;
@@ -540,81 +521,251 @@ a {
   gap: 20px;
   height: 50%;
 }
-.card-benef h3, .card-desaf h3 {
+.card-benef h3,
+.card-desaf h3 {
   font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media screen and (min-width: 768px) {
-  .card-benef h3, .card-desaf h3 {
+  .card-benef h3,
+  .card-desaf h3 {
     font-size: 3rem;
   }
 }
-.card-benef p, .card-desaf p {
+.card-benef p,
+.card-desaf p {
   display: none;
 }
-@media screen and (min-width: 1024px) {
-  .card-benef, .card-desaf {
+@media screen and (min-width: 1025px) {
+  .card-benef,
+  .card-desaf {
     width: 50%;
     height: 100%;
-    transition: all 0.5s ease-in-out;
+    transition: all 6s ease-in-out;
   }
-  .card-benef:hover, .card-desaf:hover {
+  .card-benef:hover,
+  .card-desaf:hover {
     width: 140%;
+    transition: all 6s ease-in-out;
   }
-  .card-benef:hover h3, .card-desaf:hover h3 {
+  .card-benef:hover h3,
+  .card-desaf:hover h3 {
     animation: fontScaleUp 1s ease-in forwards;
   }
-  .card-benef:hover p, .card-desaf:hover p {
+  .card-benef:hover p,
+  .card-desaf:hover p {
     animation: fadeIn 2s ease-in forwards;
     display: block;
   }
-  .card-benef:not(:hover), .card-desaf:not(:hover) {
+  .card-benef:not(:hover),
+  .card-desaf:not(:hover) {
     width: 50%;
   }
-  .card-benef:not(:hover) h3, .card-desaf:not(:hover) h3 {
+  .card-benef:not(:hover) h3,
+  .card-desaf:not(:hover) h3 {
     animation: fontScaleDown 1s ease-in forwards;
   }
-  .card-benef:not(:hover) p, .card-desaf:not(:hover) p {
+  .card-benef:not(:hover) p,
+  .card-desaf:not(:hover) p {
     animation: fadeOut 1s ease-in forwards;
   }
 }
 @media screen and (max-width: 1024px) {
-  .card-benef.clicked, .card-desaf.clicked {
-    height: auto;
+  .card-benef,
+  .card-desaf {
+    transition: height 0.5s ease-in-out;
   }
-  .card-benef.clicked p, .card-desaf.clicked p {
-    display: block;
+  .card-benef.clicked,
+  .card-desaf.clicked {
+    height: 140%;
+  }
+  .card-benef.clicked p,
+  .card-desaf.clicked p {
     animation: fadeIn 2s ease-in forwards;
+    display: block;
+  }
+}
+@media screen and (max-width: 1024px) and (max-height: 768px) {
+  .card-benef p,
+  .card-desaf p {
+    font-size: 0.8rem;
   }
 }
 
-@keyframes fontScaleUp {
-  to {
-    font-size: 4rem;
-    @media screen and (min-width: 768px) {
-      font-size: 6rem;
-    }
-  }
-}
 .card-benef {
-  border: 4px solid #B8F164;
+  border: 4px solid #b8f164;
   background-image: url("img/background_image_benefits.svg");
   background-size: cover;
   background-position: center;
 }
 .card-benef h3 {
-  color: #B8F164;
+  color: #b8f164;
   text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 .card-desaf {
-  border: 4px solid #85D22C;
+  border: 4px solid #85d22c;
   background-image: url("img/background_image_challenge.svg");
   background-size: cover;
   background-position: center;
 }
 .card-desaf h3 {
-  color: #85D22C;
+  color: #85d22c;
   text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+#use-greenflow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin: 30px 20px;
+  margin-bottom: 200px;
+  padding-top: 120px;
+}
+#use-greenflow h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #85d22c;
+  text-align: center;
+}
+#use-greenflow h2 p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #85d22c;
+  max-width: fit-content;
+  text-align: center;
+  margin: 0 auto;
+}
+#use-greenflow p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #040a00;
+  text-align: center;
+  padding: 0 40px;
+  max-width: 1100px;
+}
+
+#use-greenflow {
+  position: relative;
+}
+#use-greenflow .mockups {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+#use-greenflow .mockups img {
+  position: absolute;
+  height: auto;
+  opacity: 0.2;
+}
+#use-greenflow .mockups img.mockups-mobile {
+  bottom: 5%;
+  left: -25%;
+  width: 25vh;
+}
+@media screen and (min-width: 768px) {
+  #use-greenflow .mockups img.mockups-mobile {
+    left: -10%;
+    bottom: -10%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #use-greenflow .mockups img.mockups-mobile {
+    bottom: -10%;
+    left: 5%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  #use-greenflow .mockups img.mockups-mobile {
+    width: 35vh;
+  }
+}
+#use-greenflow .mockups img.mockups-desktop {
+  bottom: 5%;
+  right: -25%;
+  width: 30vh;
+}
+@media screen and (min-width: 768px) {
+  #use-greenflow .mockups img.mockups-desktop {
+    right: -10%;
+    bottom: -10%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #use-greenflow .mockups img.mockups-desktop {
+    right: 5%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  #use-greenflow .mockups img.mockups-desktop {
+    width: 40vh;
+  }
+}
+
+.use-greenflow-hero {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.use-greenflow-hero h3 {
+  font-size: 8vw;
+  font-weight: 800;
+  color: #3c8500;
+}
+@media screen and (min-width: 768px) {
+  .use-greenflow-hero h3 {
+    font-size: 3rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .use-greenflow-hero h3 {
+    font-size: 4rem;
+  }
+}
+.use-greenflow-hero a {
+  font-size: 1.5rem;
+  color: #85d22c;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #85d22c;
+  border-radius: 30px;
+  transition: all 0.7s ease;
+}
+.use-greenflow-hero a:hover {
+  background-color: #85d22c;
+  color: #fff;
+}
+
+footer {
+  border-top: 2px solid #85d22c;
+}
+
+.footer-links a {
+  color: #3c8500;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+  color: #b8f164;
+}
+
+.footer-social a {
+  color: #3c8500;
+  font-size: 1.5rem;
+}
+.footer-social a:hover {
+  color: #b8f164;
 }
 
 /*# sourceMappingURL=style.css.map */

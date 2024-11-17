@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 // Global Variables
-$font-family: 'Poppins', sans-serif;
-$dark-green: #3C8500;
-$mid-green: #85D22C;
-$light-green: #B8F164;
-$yellow: #FFFE65;
+$font-family: "Poppins", sans-serif;
+$dark-green: #3c8500;
+$mid-green: #85d22c;
+$light-green: #b8f164;
+$yellow: #fffe65;
 $white: #fff;
-$black: #040A00;
-$grey: #A6A6A6;
+$black: #040a00;
+$grey: #a6a6a6;
 $transition-duration: 1s;
 $transition-ease: ease-in-out;
 
@@ -21,664 +21,831 @@ $stroke-color: $mid-green;
 
 // Mixins
 @mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin absolute-full {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 }
 
 @mixin bg-image($url, $size: cover, $position: center) {
-    background-image: url($url);
-    background-size: $size;
-    background-position: $position;
+  background-image: url($url);
+  background-size: $size;
+  background-position: $position;
 }
 
 @mixin font-sizes($size: 1rem) {
-    font-size: $size;
+  font-size: $size;
+}
 
-    @media screen and (min-width: 768px) {
-        font-size: $size * 1.5;
-    }
+@mixin responsive-font-sizes($size: 1rem) {
+  @include font-sizes($size);
+
+  @media screen and (min-width: 768px) {
+    font-size: ($size * 1.5);
+  }
 }
 
 @mixin translatesY($mobile, $tablet, $desktop, $higher) {
-    transform: translateY($mobile);
+  transform: translateY($mobile);
 
-    @media screen and (min-width: 768px) {
-        transform: translateY($tablet);
-    }
+  @media screen and (min-width: 768px) {
+    transform: translateY($tablet);
+  }
 
-    @media screen and (min-width: 1024px) {
-        transform: translateY($desktop);
-    }
+  @media screen and (min-width: 1024px) {
+    transform: translateY($desktop);
+  }
 
-    @media screen and (min-width: 1300px) {
-        transform: translateY($higher);
-    }
+  @media screen and (min-width: 1300px) {
+    transform: translateY($higher);
+  }
 }
 
-@mixin transition($property: all, $duration: $transition-duration, $ease: $transition-ease) {
-    transition: $property $duration $ease;
+@mixin transition(
+  $property: all,
+  $duration: $transition-duration,
+  $ease: $transition-ease
+) {
+  transition: $property $duration $ease;
+}
+
+@mixin card-styles($border-color, $bg-image) {
+  border: 4px solid $border-color;
+  background-image: url($bg-image);
+  background-size: cover;
+  background-position: center;
+
+  h3 {
+    color: $border-color;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  }
+}
+
+@mixin heightWithNavbar() {
+  height: calc(100vh - 90px);
+
+  @media screen and (min-width: 1024px) {
+    height: calc(100vh - 110px);
+  }
+}
+
+// Keyframes
+@keyframes moveClouds {
+  // .clouds
+  0% {
+    background-position: top left;
+  }
+
+  100% {
+    background-position: top right;
+  }
+}
+
+@keyframes moveCloudsPC {
+  // .clouds
+  0% {
+    background-position: top left;
+    transform: translateY(0) translateX(0);
+  }
+
+  50% {
+    background-position: top right;
+    transform: translateY(-5%) translateX(-5%);
+  }
+
+  100% {
+    background-position: top right;
+    transform: translateY(5%) translateX(5%);
+  }
+}
+
+@keyframes bgZoomIn {
+  // .banner::before
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes bgZoomOut {
+  // .banner::after
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(2);
+  }
+}
+
+@keyframes textAnimation {
+  // svg path
+  0% {
+    stroke-dashoffset: 100;
+    stroke-dasharray: 100;
+  }
+
+  60% {
+    fill: transparent;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    fill: $stroke-color;
+    stroke-dasharray: 0;
+  }
+}
+
+@keyframes fadeOut {
+  // svg path, .card-types p
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  // .navbar, .hero, .card-types p
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fontScaleUp {
+  // .card-benef h3, .card-desaf h3
+  to {
+    @include font-sizes(4rem);
+  }
 }
 
 // Styles
 
+html,
 body {
-    margin: 0;
-    font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; // Impede a rolagem horizontal
+  font-family: $font-family;
 }
 
 // Banner styles
 
 .banner {
-    height: $banner-height;
-    @include flex-center;
-    position: relative;
-    overflow: hidden;
+  height: $banner-height;
+  @include flex-center;
+  position: relative;
+  overflow: hidden;
 
-    &::before,
-    &::after {
-        content: '';
-        @include absolute-full;
-        z-index: -1;
-        pointer-events: none;
+  &::before,
+  &::after {
+    content: "";
+    @include absolute-full;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &::before {
+    @include bg-image("img/background_image.png");
+    animation: bgZoomIn $zoom-animation-duration ease-in-out 1 forwards;
+  }
+
+  &::after {
+    @include bg-image("img/frontground_image.png", cover, top);
+    opacity: 0.3;
+    transform: scale(2);
+    animation: bgZoomOut $zoom-animation-duration ease-in-out 1 forwards;
+  }
+
+  .clouds {
+    @include absolute-full;
+    @include bg-image("img/moving_clouds.png", cover, top left);
+    opacity: 0.7;
+    animation: moveClouds $clouds-animation-duration alternate infinite;
+    z-index: 1;
+
+    @media (min-width: 1024px) {
+      animation: moveCloudsPC $clouds-animation-duration-pc alternate infinite;
+      scale: 1.2;
+      @include flex-center;
     }
-
-    &::before {
-        @include bg-image('img/background_image.png');
-        animation: bgZoomIn $zoom-animation-duration ease-in-out 1 forwards;
-    }
-
-    &::after {
-        @include bg-image('img/frontground_image.png', cover, top);
-        opacity: 0.3;
-        transform: scale(2);
-        animation: bgZoomOut $zoom-animation-duration ease-in-out 1 forwards;
-    }
-
-    .clouds {
-        @include absolute-full;
-        @include bg-image('img/moving_clouds.png', cover, top left);
-        opacity: 0.7;
-        animation: moveClouds $clouds-animation-duration alternate infinite;
-        z-index: 1;
-
-        @media (min-width: 1024px) {
-            animation: moveCloudsPC $clouds-animation-duration-pc alternate infinite;
-            scale: 1.2;
-            @include flex-center;
-        }
-    }
-}
-
-@keyframes moveClouds {
-    0% {
-        background-position: top left;
-    }
-
-    100% {
-        background-position: top right;
-    }
-}
-
-@keyframes moveCloudsPC {
-    0% {
-        background-position: top left;
-        transform: translateY(0) translateX(0);
-    }
-
-    50% {
-        background-position: top right;
-        transform: translateY(-5%) translateX(-5%);
-    }
-
-    100% {
-        background-position: top right;
-        transform: translateY(5%) translateX(5%);
-    }
-}
-
-@keyframes bgZoomIn {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.2);
-    }
-}
-
-@keyframes bgZoomOut {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(2);
-    }
+  }
 }
 
 svg path {
-    fill: transparent;
-    stroke: $stroke-color;
-    stroke-width: 1;
-    animation: textAnimation $zoom-animation-duration ease-in-out 1 forwards, fadeOut 1s 4s ease-in-out 1 forwards;
-    z-index: 1;
+  fill: transparent;
+  stroke: $stroke-color;
+  stroke-width: 1;
+  animation: textAnimation $zoom-animation-duration ease-in-out 1 forwards,
+    fadeOut 1s 4s ease-in-out 1 forwards;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
-    svg {
-        width: 80%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-}
-
-@keyframes textAnimation {
-    0% {
-        stroke-dashoffset: 100;
-        stroke-dasharray: 100;
-    }
-
-    60% {
-        fill: transparent;
-        stroke-dashoffset: 0;
-    }
-
-    100% {
-        fill: $stroke-color;
-        stroke-dasharray: 0;
-    }
-}
-
-@keyframes fadeOut {
-    100% {
-        opacity: 0;
-        display: none;
-    }
+  svg {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 // Navbar styles
 
 .navbar {
-    opacity: 0;
-    padding: 10px 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 2s 5s ease-in-out 1 forwards;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+  width: 100%; 
+  max-width: 100vw; 
+  overflow-x: hidden; 
+  opacity: 0;
+  padding: 10px 20px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn 2s 5s ease-in-out 1 forwards;
 }
 
 .nav-logo-container {
-    width: 20%;
+  width: 20%;
 }
 
 .nav-logo {
-    width: 150%;
+  width: 150%;
 
-    @media (min-width: 768px) {
-        width: 75%;
-    }
+  @media (min-width: 768px) {
+    width: 75%;
+  }
 }
 
 .navbar-toggler {
-    border: none;
-    background-color: transparent;
-    background-image: none;
-    padding: 5px;
+  border: none;
+  background-color: transparent;
+  background-image: none;
+  padding: 5px;
 
-    @media (min-width: 1024px) {
-        display: none;
-    }
+  @media (min-width: 1024px) {
+    display: none;
+  }
 }
 
 .navbar-toggler-icon {
-    background-image: url(img/menu-toggler.png);
+  background-image: url(img/menu-toggler.png);
 }
 
 .navbar-nav {
-    @media (min-width: 1024px) {
-        gap: 30px;
-    }
+  @media (min-width: 1024px) {
+    gap: 30px;
+  }
 }
 
 .nav-link {
-    color: $mid-green;
-    font-weight: 500;
-    @include font-sizes();
+  color: $mid-green;
+  font-weight: 500;
+  @include responsive-font-sizes();
 
-    &:hover {
-        color: $dark-green;
-    }
+  &:hover {
+    color: $dark-green;
+  }
 }
 
 .navbar .nav-link.active {
-    color: $light-green !important;
-    scale: 1.1;
+  color: $light-green !important;
+  scale: 1.1;
 }
 
 // Hero Section
 
 .hero {
-    position: absolute;
-    top: 25%;
-    text-align: center;
-    color: $white;
-    z-index: 1;
-    opacity: 0;
-    animation: fadeIn 2s 5s ease-in-out 1 forwards;
+  position: absolute;
+  top: 25%;
+  text-align: center;
+  color: $white;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 2s 5s ease-in-out 1 forwards;
 
-    h1 {
-        @include font-sizes(2.5rem);
-        font-weight: 800;
-        margin-bottom: 20px;
+  h1 {
+    @include responsive-font-sizes(2.5rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  p {
+    @include responsive-font-sizes(1rem);
+    font-weight: 300;
+    margin-bottom: 20px;
+    max-width: 270px;
+    margin: 0 auto;
+
+    @media screen and (min-width: 764px) {
+      max-width: 450px;
     }
-
-    p {
-        @include font-sizes(1rem);
-        font-weight: 300;
-        margin-bottom: 20px;
-        max-width: 270px;
-        margin: 0 auto;
-
-        @media screen and (min-width: 764px) {
-            max-width: 450px;
-        }
-    }
+  }
 }
 
 .badges {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 10px;
-    z-index: -1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  z-index: -1;
+
+  a img {
+    width: 60px;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
 
     a img {
-        width: 60px;
+      width: 80px;
     }
+  }
 
-    @media screen and (min-width: 768px) {
-        gap: 20px;
-
-        a img {
-            width: 80px;
-        }
-    }
-
-    @media screen and (min-width: 1024px) {
-        gap: 30px;
-    }
+  @media screen and (min-width: 1024px) {
+    gap: 30px;
+  }
 }
 
 .badges a:nth-child(3),
 .badges a:nth-child(4) {
-    transform: translateY(140%);
+  transform: translateY(140%);
 }
 
 .badges a:nth-child(2),
 .badges a:nth-child(5) {
-    transform: translateY(100%);
+  transform: translateY(100%);
 }
 
 .badges a:first-child {
-    transform: translate(26%, 26%);
+  transform: translate(26%, 26%);
 }
 
 .badges a:last-child {
-    transform: translate(-26%, 26%);
+  transform: translate(-26%, 26%);
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: inherit;
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
 }
 
 .scroll-btn {
-    button {
-        border: 2px solid $mid-green;
-        border-radius: 50px;
-        background-color: transparent;
-        color: $mid-green;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-family: $font-family;
-        font-weight: 500;
-        font-size: 1rem;
-        position: absolute;
-        bottom: -60%;
-        left: 50%;
-        transform: translateX(-50%);
-        @include flex-center;
-        @include transition();
+  button {
+    border: 2px solid $mid-green;
+    border-radius: 50px;
+    background-color: transparent;
+    color: $mid-green;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 1rem;
+    position: absolute;
+    bottom: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-center;
+    @include transition();
 
-        &:hover {
-            border-color: $light-green;
-            color: $white;
-            font-size: 1.1rem;
-        }
+    &:hover {
+      border-color: $light-green;
+      color: $white;
+      font-size: 1.1rem;
     }
+  }
 }
 
 // Types Section
 
 .tipos {
-    @include bg-image('img/world-clean-energy-image.png');
-    background-attachment: fixed;
-    background-size: 100%;
-    background-repeat: no-repeat;
+  @include bg-image("img/world-clean-energy-image.png");
+  background-attachment: fixed;
+  background-size: 100%;
+  background-repeat: no-repeat;
 
-    @media screen and (max-width: 768px) {
-        background-size: 160%;
-    }
+  @media screen and (max-width: 768px) {
+    background-size: 160%;
+  }
 
-    @media screen and (min-width: 769px) and (max-width: 1024px) {
-        background-size: 180%;
-    }
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    background-size: 180%;
+  }
 }
 
 .cards {
-    margin-top: 120px;
-    margin-bottom: 120px;
+  margin-top: 120px;
+  margin-bottom: 120px;
 
-    @media screen and (min-width: 1024px) {
-        margin-top: 150px;
-        margin-bottom: 150px;
-    }
+  @media screen and (min-width: 1024px) {
+    margin-top: 150px;
+    margin-bottom: 150px;
+  }
 }
 
 .card-types {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    padding: 5px;
-    text-align: start;
-    cursor: pointer;
-    @include transition();
-    background-color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 5px;
+  text-align: start;
+  cursor: pointer;
+  @include transition();
+  background-color: rgba(250, 250, 250, 0.8);
 
-    &:hover {
-        background-color: rgba(250, 250, 250, 0.9);
-    }
+  &:hover {
+    background-color: rgba(250, 250, 250, 0.9);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: $black;
+  }
+
+  @media screen and (min-width: 764px) {
+    width: 70%;
+    padding: 10px;
 
     h3 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        text-transform: uppercase;
+      font-size: 1.6rem;
     }
 
     p {
-        font-size: 0.8rem;
-        font-weight: 300;
-        color: $black;
+      font-size: 1rem;
     }
-
-    @media screen and (min-width: 764px) {
-        width: 70%;
-        padding: 10px;
-
-        h3 {
-            font-size: 1.6rem;
-        }
-
-        p {
-            font-size: 1rem;
-        }
-    }
+  }
 }
 
-@keyframes fadeInFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) scale(0.5);
-    }
+.card-left,
+.card-right {
+  justify-content: flex-start;
+  opacity: 1;
 
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-}
-
-@keyframes fadeInFromRight {
-    from {
-        opacity: 0;
-        transform: translateX(50%) scale(0.5);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
+  @media screen and (min-width: 1024px) {
+    margin-left: auto;
+  }
 }
 
 .card-left {
-    justify-content: flex-start;
-    margin-right: auto;
-    border: 2px solid $mid-green;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    opacity: 0; // Inicialmente invisível
-    transition: opacity 1s ease-out, transform 1s ease-out;
+  margin-right: auto;
+  border: 2px solid $mid-green;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 
-    @media screen and (min-width: 1024px) {
-        margin-left: auto;
-    }
-
-    &.fade-in-left {
-        opacity: 1;
-        transform: translateX(0);
-        animation: fadeInFromLeft 1s ease-out forwards;
-    }
-
-    h3 {
-        color: $mid-green;
-    }
+  h3 {
+    color: $mid-green;
+  }
 }
 
 .card-right {
-    justify-content: flex-start;
+  margin-left: auto;
+  border: 2px solid $dark-green;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+
+  @media screen and (min-width: 1024px) {
     margin-left: auto;
-    border: 2px solid $dark-green;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    opacity: 0; // Inicialmente invisível
-    transition: opacity 1s ease-out, transform 1s ease-out;
+    margin-right: auto;
+  }
 
-    @media screen and (min-width: 1024px) {
-        margin-right: auto;
-    }
-
-    &.fade-in-right {
-        opacity: 1;
-        transform: translateX(0);
-        animation: fadeInFromRight 1s ease-out forwards;
-    }
-
-    h3 {
-        color: $dark-green;
-    }
+  h3 {
+    color: $dark-green;
+  }
 }
 
 .card-displayed {
-    display: flex;
-    gap: 20px;
-    align-items: bottom;
+  display: flex;
+  gap: 20px;
+  align-items: bottom;
 }
 
 .card-displayed-after {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
 
-    h2 {
-        @include font-sizes(0.9rem);
-        font-weight: 700;
-        color: $black;
-    }
+  h2 {
+    @include font-sizes(0.9rem);
+    font-weight: 700;
+    color: $black;
+  }
 
-    @media screen and (min-width: 1024px) {
-        display: flex;
-        flex-direction: row-reverse;
-        gap: 10px;
-
-    }
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+  }
 }
 
 .card-displayed-after.show {
-    max-height: 1000px;
-    opacity: 1;
+  max-height: 1000px;
+  opacity: 1;
 }
 
 .card-displayed-after-div {
-    @media screen and (min-width: 1024px) {
-        width: 50%;
-    }
-    
+  @media screen and (min-width: 1024px) {
+    width: 50%;
+  }
 }
 
 // Types Section - Carrossel
 
 .carousel-image {
-    display: block;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 
-    @media screen and (min-width: 768px) {
-        height: 400px;
-    }
+  @media screen and (min-width: 768px) {
+    height: 400px;
+  }
 }
 
 .carousel-image-left {
-    border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .carousel-image-right {
-    border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 // Benefits and Challenges Section
 
-#beneficios-desafios{
-    width: auto;
-    height: calc(100vh - 90px);
-    @media screen and (min-width: 1024px) {
-        height: calc(100vh - 110px);
-    }
+#beneficios-desafios {
+  width: auto;
+  @include heightWithNavbar();
 }
 
-.cards-benef-desaf{
-    display: flex;
-    flex-direction: column;
-    gap: 2%;
-    padding: 4%;
+.cards-benef-desaf {
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  padding: 4%;
+  height: 100%;
+
+  @media screen and (min-width: 1025px) {
+    flex-direction: row;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: $white;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  }
+}
+
+.card-benef,
+.card-desaf {
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 50%;
+
+  h3 {
+    @include responsive-font-sizes(2rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    display: none;
+  }
+
+  @media screen and (min-width: 1025px) {
+    width: 50%;
     height: 100%;
+    transition: all 6s ease-in-out;
+
+    &:hover {
+      width: 140%;
+      transition: all 6s ease-in-out; 
+
+      h3 {
+        animation: fontScaleUp 1s ease-in forwards;
+      }
+
+      p {
+        animation: fadeIn 2s ease-in forwards;
+        display: block;
+      }
+    }
+
+    &:not(:hover) {
+      width: 50%;
+
+      h3 {
+        animation: fontScaleDown 1s ease-in forwards;
+      }
+
+      p {
+        animation: fadeOut 1s ease-in forwards;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    transition: height 0.5s ease-in-out;
+    &.clicked {
+      height: 140%;
+
+      p {
+        animation: fadeIn 2s ease-in forwards;
+        display: block;
+      }
+    }
+    @media screen and (max-height: 768px) {
+      p{
+        font-size: 0.8rem;
+      }
+      
+    }
+  }
+}
+
+.card-benef {
+  @include card-styles($light-green, "img/background_image_benefits.svg");
+}
+
+.card-desaf {
+  @include card-styles($mid-green, "img/background_image_challenge.svg");
+}
+
+// Styles use greenflow
+
+#use-greenflow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin: 30px 20px;
+  margin-bottom: 200px;
+  padding-top: 120px;
+  h2 {
+    @include font-sizes(1.8rem);
+    font-weight: 700;
+    color: $mid-green;
+    text-align: center;
+    p {
+      @include font-sizes(1.4rem);
+      font-weight: 600;
+      color: $mid-green;
+      max-width: fit-content;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+  p {
+    @include font-sizes(0.9rem);
+    font-weight: 300;
+    color: $black;
+    text-align: center;
+    padding: 0 40px;
+    max-width: 1100px;
+  }
+}
+
+#use-greenflow {
+  position: relative;
+
+  .mockups {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+
+    img {
+      position: absolute;
+      height: auto;
+      opacity: 0.2;
+
+      &.mockups-mobile {
+        bottom: 5%;
+        left: -25%;
+        width: 25vh;
+
+        @media screen and (min-width: 768px) {
+          left: -10%;
+          bottom: -10%;
+        }
+
+        @media screen and (min-width: 1024px) {
+          bottom: -10%;
+          left: 5%;
+        }
+        @media screen and (min-width: 1600px) {
+          width: 35vh;
+        }
+      }
+
+      &.mockups-desktop {
+        bottom: 5%;
+        right: -25%;
+        width: 30vh;
+
+        @media screen and (min-width: 768px) {
+          right: -10%;
+          bottom: -10%;
+        }
+        @media screen and (min-width: 1024px) {
+          right: 5%;
+        }
+        @media screen and (min-width: 1600px) {
+          width: 40vh;
+        }
+      }
+    }
+  }
+}
+
+.use-greenflow-hero {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+
+  h3 {
+    font-size: 8vw;
+    font-weight: 800;
+    color: $dark-green;
+
+    @media screen and (min-width: 768px) {
+      font-size: 3rem;
+    }
 
     @media screen and (min-width: 1024px) {
-        flex-direction: row;
+      font-size: 4rem;
     }
+  }
 
+  a {
+    font-size: 1.5rem;
+    color: $mid-green;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid $mid-green;
+    border-radius: 30px;
+    transition: all 0.7s ease;
 
-    p{
-        font-size: 1rem;
-        font-weight: 300;
-        color: $white;
-        text-align: center;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    &:hover {
+      background-color: $mid-green;
+      color: $white;
     }
+  }
 }
 
-.card-benef, .card-desaf{
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    height: 50%;
-    h3{
-        @include font-sizes(2rem)
-    }
-    p{
-        display: none;
-    }
-    @media screen and (min-width: 1024px) {
-        width: 50%;
-        height: 100%;
-        transition: all 0.5s ease-in-out;
-        &:hover {
-            width: 140%;
-            h3 {
-                animation: fontScaleUp 1s ease-in forwards;
-            }
-            p {
-                animation: fadeIn 2s ease-in forwards;
-                display: block;
-            }
-        }
-        &:not(:hover) {
-            width: 50%;
-            h3 {
-                animation: fontScaleDown 1s ease-in forwards;
-            }
-            p {
-                animation: fadeOut 1s ease-in forwards;
-            }
-        }
-    }
-    @media screen and (max-width: 1024px) {
-        &.clicked {
-            height: auto;
-            p {
-                display: block;
-                animation: fadeIn 2s ease-in forwards;
-            }
-        }
-    }
+// Footer
+
+footer {
+  border-top: 2px solid $mid-green;
 }
 
-@keyframes fontScaleUp {
-    to {
-        @include font-sizes(4rem);
-    }
+.footer-links a {
+  color: $dark-green;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: $light-green;
+  }
 }
 
+.footer-social a {
+  color: $dark-green;
+  font-size: 1.5rem;
 
-.card-benef{
-    border: 4px solid $light-green;
-    background-image: url('img/background_image_benefits.svg');
-    background-size: cover;
-    background-position: center;
-    h3{
-        color: $light-green;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    }
-}
-
-.card-desaf{
-    border: 4px solid $mid-green;
-    background-image: url('img/background_image_challenge.svg');
-    background-size: cover;
-    background-position: center;
-    h3 {
-        color: $mid-green;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    }
+  &:hover {
+    color: $light-green;
+  }
 }

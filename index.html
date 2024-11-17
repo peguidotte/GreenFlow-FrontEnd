@@ -1,522 +1,827 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GreenFlow</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <div class="banner">
-        <div class="clouds"></div>
-        <div class="title">
-            <svg width="445" height="113" viewBox="0 0 445 113" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M187.984 38.353C187.984 43.9029 186.527 48.9825 183.614 53.5917C180.701 58.201 176.848 61.7285 172.055 64.1742L187.984 108.197H169.8L154.998 67.4194H118.488V50.2053H159.086C162.375 50.2053 165.148 49.0766 167.403 46.819C169.753 44.4673 170.927 41.6924 170.927 38.4941C170.927 35.2018 169.753 32.3798 167.403 30.0282C165.148 27.6765 162.375 26.5007 159.086 26.5007H118.488V9.42768H159.086C167.074 9.42768 173.888 12.2497 179.526 17.8936C185.165 23.5376 187.984 30.3574 187.984 38.353Z"
-                    fill="#85D22C" />
-                <path
-                    d="M271.683 108.197H202.186V91.1241H271.683V108.197ZM271.683 26.5007H202.186V9.42768H271.683V26.5007ZM259.982 67.4194H202.186V50.2053H259.982V67.4194Z"
-                    fill="#85D22C" />
-                <path
-                    d="M355.381 108.197H285.885V91.1241H355.381V108.197ZM355.381 26.5007H285.885V9.42768H355.381V26.5007ZM343.681 67.4194H285.885V50.2053H343.681V67.4194Z"
-                    fill="#85D22C" />
-                <path d="M427.943 9.42768H445V108.197H427.943L369.583 9.42768H389.46L427.943 74.6155V9.42768Z"
-                    fill="#85D22C" />
-                <path
-                    d="M93.3767 65.9354C94.914 76.1453 90.9436 84.1105 83.9027 90.7723C69.6023 104.302 48.0181 105.985 31.3329 95.1579C10.3491 81.541 5.05973 54.5973 17.4333 34.9034C27.3808 19.0709 41.997 12.3548 60.4914 13.7313C62.2608 13.863 64.0348 14.2846 65.7441 14.785C67.8744 15.4087 68.9605 14.5846 69.5774 12.6199C70.0882 10.993 70.6358 9.36479 71.3364 7.81356C72.2241 5.84807 71.4435 4.97289 69.5794 4.48413C63.5444 2.90173 57.4245 2.26647 51.2047 2.79552C26.151 4.92661 6.12366 22.3783 1.16743 47.0004C-1.92751 62.3759 1.13755 76.7317 10.2874 89.6391C18.4449 101.147 29.4434 108.57 43.1592 111.661C66.2418 116.863 90.231 106.591 100.751 86.3945C104.327 79.5305 105.316 72.1723 104.204 64.5991C101.717 47.6599 86.5893 39.9627 71.2178 47.6232C63.9969 51.2218 57.8402 56.1732 51.8866 61.7763C52.4323 60.606 52.8951 59.3882 53.5369 58.2732C58.1742 50.2176 64.8864 44.5755 73.5534 41.2351C74.5401 40.8549 75.5278 40.4769 76.5171 40.1035C77.7502 39.638 78.0321 38.8898 77.0762 37.914C67.8525 28.4983 52.001 29.4106 45.7117 41.4092C43.8676 44.9273 42.5744 48.7593 40.5128 52.1325C36.0629 59.4136 29.1052 62.4282 20.7881 62.7231C20.3012 62.7403 19.8082 62.6629 19.3253 62.7075C17.2896 62.8955 16.6187 64.0709 17.9106 65.6189C19.409 67.4145 21.0719 69.1592 22.9479 70.5402C35.9814 80.1346 57.0988 83.032 72.3386 72.8014C77.8145 69.1254 82.1894 64.5644 83.7855 57.9028C84.2532 55.9509 85.4105 55.6473 87.0697 56.4165C91.0418 58.258 92.5192 61.78 93.3767 65.9354Z"
-                    fill="#85D22C" />
-                <path
-                    d="M95.2665 29.9247C96.4605 30.3092 97.5059 30.9641 98.463 30.8542C99.5105 30.7339 101.005 30.1191 101.324 29.3261C101.621 28.587 100.911 26.8151 100.151 26.3998C97.9609 25.2031 95.5262 24.4493 93.1785 23.5452C90.4181 22.4822 90.2616 22.1614 91.2532 19.444C93.5259 13.2164 92.781 13.8809 98.5701 16.0257C100.018 16.562 101.466 17.3332 102.954 17.4429C104.003 17.5202 105.567 16.9597 106.106 16.1534C106.984 14.8388 106.219 13.4377 104.737 12.808C102.419 11.8236 100.06 10.9311 97.6857 10.0915C96.3379 9.61477 95.6484 8.92455 95.3366 7.38966C95.1233 6.33967 94.0342 5.07935 93.0227 4.64778C89.2901 3.05514 85.4518 1.69493 81.6043 0.391562C78.9287 -0.514806 77.6467 0.10414 76.6513 2.75423C74.4244 8.68294 72.2588 14.6357 70.1592 20.6106C69.2439 23.2155 69.801 24.3596 72.3743 25.3746C75.7 26.6864 79.049 27.9536 82.4461 29.0621C83.4396 29.3863 84.9241 29.5347 85.6784 29.022C88.2416 27.2798 90.5879 27.9014 93.0364 29.0577C93.6961 29.3692 94.397 29.5936 95.2665 29.9247Z"
-                    fill="#85D22C" />
-                <path
-                    d="M371.57 95.4041H375.432V103.475H379.605V97.4359H383.354V103.475H391.361V108.301H371.57V95.4041Z"
-                    fill="#85D22C" />
-                <path d="M387.64 88.0422V81.721H391.361V92.8678H371.57V88.0422H387.64Z" fill="#85D22C" />
-                <path
-                    d="M391.559 70.0503C391.559 71.9128 391.126 73.6248 390.262 75.1863C389.397 76.729 388.194 77.9613 386.653 78.8831C385.093 79.7861 383.345 80.2377 381.409 80.2377C379.473 80.2377 377.734 79.7861 376.193 78.8831C374.652 77.9613 373.449 76.729 372.584 75.1863C371.72 73.6248 371.288 71.9128 371.288 70.0503C371.288 68.1878 371.72 66.4852 372.584 64.9425C373.449 63.381 374.652 62.1581 376.193 61.2739C377.734 60.3709 379.473 59.9194 381.409 59.9194C383.345 59.9194 385.093 60.3709 386.653 61.2739C388.194 62.177 389.397 63.3998 390.262 64.9425C391.126 66.4852 391.559 68.1878 391.559 70.0503ZM387.16 70.0503C387.16 68.47 386.634 67.2095 385.582 66.2688C384.529 65.3094 383.138 64.8296 381.409 64.8296C379.661 64.8296 378.27 65.3094 377.236 66.2688C376.184 67.2095 375.658 68.47 375.658 70.0503C375.658 71.6494 376.174 72.9287 377.208 73.8882C378.242 74.8288 379.642 75.2992 381.409 75.2992C383.157 75.2992 384.557 74.8288 385.61 73.8882C386.643 72.9287 387.16 71.6494 387.16 70.0503Z"
-                    fill="#85D22C" />
-                <path
-                    d="M371.57 29.9744L391.361 35.1386V40.9801L378.336 44.1407L391.361 47.4142V53.2557L371.57 58.2789V53.1146L385.976 50.2644L371.57 46.737V41.4316L385.976 38.0452L371.57 35.1668V29.9744Z"
-                    fill="#85D22C" />
-            </svg>
-        </div>
+      <div class="clouds"></div>
+      <div class="title">
+        <svg
+          width="445"
+          height="113"
+          viewBox="0 0 445 113"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M187.984 38.353C187.984 43.9029 186.527 48.9825 183.614 53.5917C180.701 58.201 176.848 61.7285 172.055 64.1742L187.984 108.197H169.8L154.998 67.4194H118.488V50.2053H159.086C162.375 50.2053 165.148 49.0766 167.403 46.819C169.753 44.4673 170.927 41.6924 170.927 38.4941C170.927 35.2018 169.753 32.3798 167.403 30.0282C165.148 27.6765 162.375 26.5007 159.086 26.5007H118.488V9.42768H159.086C167.074 9.42768 173.888 12.2497 179.526 17.8936C185.165 23.5376 187.984 30.3574 187.984 38.353Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M271.683 108.197H202.186V91.1241H271.683V108.197ZM271.683 26.5007H202.186V9.42768H271.683V26.5007ZM259.982 67.4194H202.186V50.2053H259.982V67.4194Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M355.381 108.197H285.885V91.1241H355.381V108.197ZM355.381 26.5007H285.885V9.42768H355.381V26.5007ZM343.681 67.4194H285.885V50.2053H343.681V67.4194Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M427.943 9.42768H445V108.197H427.943L369.583 9.42768H389.46L427.943 74.6155V9.42768Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M93.3767 65.9354C94.914 76.1453 90.9436 84.1105 83.9027 90.7723C69.6023 104.302 48.0181 105.985 31.3329 95.1579C10.3491 81.541 5.05973 54.5973 17.4333 34.9034C27.3808 19.0709 41.997 12.3548 60.4914 13.7313C62.2608 13.863 64.0348 14.2846 65.7441 14.785C67.8744 15.4087 68.9605 14.5846 69.5774 12.6199C70.0882 10.993 70.6358 9.36479 71.3364 7.81356C72.2241 5.84807 71.4435 4.97289 69.5794 4.48413C63.5444 2.90173 57.4245 2.26647 51.2047 2.79552C26.151 4.92661 6.12366 22.3783 1.16743 47.0004C-1.92751 62.3759 1.13755 76.7317 10.2874 89.6391C18.4449 101.147 29.4434 108.57 43.1592 111.661C66.2418 116.863 90.231 106.591 100.751 86.3945C104.327 79.5305 105.316 72.1723 104.204 64.5991C101.717 47.6599 86.5893 39.9627 71.2178 47.6232C63.9969 51.2218 57.8402 56.1732 51.8866 61.7763C52.4323 60.606 52.8951 59.3882 53.5369 58.2732C58.1742 50.2176 64.8864 44.5755 73.5534 41.2351C74.5401 40.8549 75.5278 40.4769 76.5171 40.1035C77.7502 39.638 78.0321 38.8898 77.0762 37.914C67.8525 28.4983 52.001 29.4106 45.7117 41.4092C43.8676 44.9273 42.5744 48.7593 40.5128 52.1325C36.0629 59.4136 29.1052 62.4282 20.7881 62.7231C20.3012 62.7403 19.8082 62.6629 19.3253 62.7075C17.2896 62.8955 16.6187 64.0709 17.9106 65.6189C19.409 67.4145 21.0719 69.1592 22.9479 70.5402C35.9814 80.1346 57.0988 83.032 72.3386 72.8014C77.8145 69.1254 82.1894 64.5644 83.7855 57.9028C84.2532 55.9509 85.4105 55.6473 87.0697 56.4165C91.0418 58.258 92.5192 61.78 93.3767 65.9354Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M95.2665 29.9247C96.4605 30.3092 97.5059 30.9641 98.463 30.8542C99.5105 30.7339 101.005 30.1191 101.324 29.3261C101.621 28.587 100.911 26.8151 100.151 26.3998C97.9609 25.2031 95.5262 24.4493 93.1785 23.5452C90.4181 22.4822 90.2616 22.1614 91.2532 19.444C93.5259 13.2164 92.781 13.8809 98.5701 16.0257C100.018 16.562 101.466 17.3332 102.954 17.4429C104.003 17.5202 105.567 16.9597 106.106 16.1534C106.984 14.8388 106.219 13.4377 104.737 12.808C102.419 11.8236 100.06 10.9311 97.6857 10.0915C96.3379 9.61477 95.6484 8.92455 95.3366 7.38966C95.1233 6.33967 94.0342 5.07935 93.0227 4.64778C89.2901 3.05514 85.4518 1.69493 81.6043 0.391562C78.9287 -0.514806 77.6467 0.10414 76.6513 2.75423C74.4244 8.68294 72.2588 14.6357 70.1592 20.6106C69.2439 23.2155 69.801 24.3596 72.3743 25.3746C75.7 26.6864 79.049 27.9536 82.4461 29.0621C83.4396 29.3863 84.9241 29.5347 85.6784 29.022C88.2416 27.2798 90.5879 27.9014 93.0364 29.0577C93.6961 29.3692 94.397 29.5936 95.2665 29.9247Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M371.57 95.4041H375.432V103.475H379.605V97.4359H383.354V103.475H391.361V108.301H371.57V95.4041Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M387.64 88.0422V81.721H391.361V92.8678H371.57V88.0422H387.64Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M391.559 70.0503C391.559 71.9128 391.126 73.6248 390.262 75.1863C389.397 76.729 388.194 77.9613 386.653 78.8831C385.093 79.7861 383.345 80.2377 381.409 80.2377C379.473 80.2377 377.734 79.7861 376.193 78.8831C374.652 77.9613 373.449 76.729 372.584 75.1863C371.72 73.6248 371.288 71.9128 371.288 70.0503C371.288 68.1878 371.72 66.4852 372.584 64.9425C373.449 63.381 374.652 62.1581 376.193 61.2739C377.734 60.3709 379.473 59.9194 381.409 59.9194C383.345 59.9194 385.093 60.3709 386.653 61.2739C388.194 62.177 389.397 63.3998 390.262 64.9425C391.126 66.4852 391.559 68.1878 391.559 70.0503ZM387.16 70.0503C387.16 68.47 386.634 67.2095 385.582 66.2688C384.529 65.3094 383.138 64.8296 381.409 64.8296C379.661 64.8296 378.27 65.3094 377.236 66.2688C376.184 67.2095 375.658 68.47 375.658 70.0503C375.658 71.6494 376.174 72.9287 377.208 73.8882C378.242 74.8288 379.642 75.2992 381.409 75.2992C383.157 75.2992 384.557 74.8288 385.61 73.8882C386.643 72.9287 387.16 71.6494 387.16 70.0503Z"
+            fill="#85D22C"
+          />
+          <path
+            d="M371.57 29.9744L391.361 35.1386V40.9801L378.336 44.1407L391.361 47.4142V53.2557L371.57 58.2789V53.1146L385.976 50.2644L371.57 46.737V41.4316L385.976 38.0452L371.57 35.1668V29.9744Z"
+            fill="#85D22C"
+          />
+        </svg>
+      </div>
 
-        <!--NavBar -->
-        <header class="navbar navbar-expand-lg bg-transparent position-fixed fixed-top top-0">
-            <nav class="container-fluid d-flex flex-row align-items-baseline p-3">
-                <a class="nav-logo-container" href="#">
-                    <img src="img/logo_green_flow.svg" alt="GreenFlow" class="nav-logo">
-                </a>
-                <div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                        <ul class="navbar-nav ms-auto align-items-center">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Introdução</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tipos">Tipos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"></i>Benefícios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Use GreenFlow</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <section class="hero">
-            <h1 class="hero-title">Energia Limpa</h1>
-            <p class="hero-p">são fontes energéticas sustentáveis e que produzem pouca poluição. Diferente dos
-                combustíveis fósseis, essas fontes ajudam a reduzir o impacto ambiental e são essenciais para um futuro
-                sustentável.</p>
-            <div class="badges d-flex ">
-                <a href="#tipos" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Energia Maremotriz">
-                    <img src="badges/badge-tidal.svg" alt="Energia Maremotriz">
-                </a>
-                <a href="#tipos" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Energia Geotérmica">
-                    <img src="badges/badge-geothermal.svg" alt="Energia Geotérmica">
-                </a>
-                <a href="#tipos" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Energia Hidráulica">
-                    <img src="badges/badge-hydraulic.svg" alt="Energia Hidráulica">
-                </a>
-                <a href="#tipos" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Energia Eólica">
-                    <img src="badges/badge-eolic.svg" alt="Energia Eólica">
-                </a>
-                <a href="#tipos" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Energia de Biomassa">
-                    <img src="badges/badge-biomass.svg" alt="Energia de Biomassa">
-                </a>
-                <a href="#tipos" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Energia Solar">
-                    <img src="badges/badge-solar.svg" alt="Energia Solar">
-                </a>
+      <!--NavBar -->
+      <header
+        class="navbar navbar-expand-lg bg-transparent position-fixed fixed-top top-0"
+      >
+        <nav class="container-fluid d-flex flex-row align-items-baseline p-3">
+          <a class="nav-logo-container" href="#">
+            <img
+              src="img/logo_green_flow.svg"
+              alt="GreenFlow"
+              class="nav-logo"
+            />
+          </a>
+          <div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Introdução</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#tipos">Tipos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#beneficios-desafios"
+                    >Pró e Contra</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#use-greenflow">Use GreenFlow</a>
+                </li>
+              </ul>
             </div>
-            <a class="scroll-btn" href="#tipos"><button>Scroll Down</button></a>
-        </section>
-
+          </div>
+        </nav>
+      </header>
+      <section class="hero">
+        <h1 class="hero-title">Energia Limpa</h1>
+        <p class="hero-p">
+          são fontes energéticas sustentáveis e que produzem pouca poluição.
+          Diferente dos combustíveis fósseis, essas fontes ajudam a reduzir o
+          impacto ambiental e são essenciais para um futuro sustentável.
+        </p>
+        <div class="badges d-flex">
+          <a
+            href="#tipos"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Energia Maremotriz"
+          >
+            <img src="badges/badge-tidal.svg" alt="Energia Maremotriz" />
+          </a>
+          <a
+            href="#tipos"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Energia Geotérmica"
+          >
+            <img src="badges/badge-geothermal.svg" alt="Energia Geotérmica" />
+          </a>
+          <a
+            href="#tipos"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Energia Hidráulica"
+          >
+            <img src="badges/badge-hydraulic.svg" alt="Energia Hidráulica" />
+          </a>
+          <a
+            href="#tipos"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Energia Eólica"
+          >
+            <img src="badges/badge-eolic.svg" alt="Energia Eólica" />
+          </a>
+          <a
+            href="#tipos"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Energia de Biomassa"
+          >
+            <img src="badges/badge-biomass.svg" alt="Energia de Biomassa" />
+          </a>
+          <a
+            href="#tipos"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Energia Solar"
+          >
+            <img src="badges/badge-solar.svg" alt="Energia Solar" />
+          </a>
+        </div>
+        <a class="scroll-btn" href="#tipos"><button>Scroll Down</button></a>
+      </section>
     </div>
 
     <div id="tipos"></div>
     <section class="tipos">
-        <div class="cards">
-            <div class="card-types card-left card-solar">
-                <div class="card-displayed" onclick="toggleCard(this)">
-                    <img src="badges/badge-solar.svg" alt="Energia Solar">
-                    <div>
-                        <div class="d-flex flex-row gap-2 align-items-baseline">
-                            <h3>Solar</h3>
-                            <p class="text-muted">clique para +</p>
-                        </div>
-                        <p>É a energia proveniente da luz e do calor do Sol que é aproveitada e utilizada por meio de
-                            diferentes tecnologias.</p>
-                    </div>
-                </div>
-                <div class="card-displayed-after px-1 pb-1">
-                    <div class="card-displayed-after-div">
-                        <h2>Descrição completa</h2>
-                        <p>A energia solar é obtida a partir da luz do sol, utilizada para gerar eletricidade e aquecer
-                            ambientes. Essa energia é captada por meio de painéis solares e coletores solares térmicos.
-
-                            Existem três principais tipos de sistemas:
-
-                            Energia Solar Fotovoltaica: Utiliza painéis fotovoltaicos para converter a luz solar
-                            diretamente
-                            em eletricidade.
-                            Energia Solar Térmica: Utiliza coletores solares para aquecer água e outros fluidos.
-                            Energia Solar Concentrada (CSP): Usa espelhos para concentrar a luz solar, gerando altas
-                            temperaturas para produzir eletricidade.
-                            A energia solar é renovável e abundante, mas sua eficiência depende da disponibilidade de
-                            luz
-                            solar e requer áreas extensas para instalação dos painéis.</p>
-                    </div>
-                    <div id="carousel-solar" class="carousel slide carousel-fade card-displayed-after-div">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/carrossel/solar-fotovoltaica.jpeg"
-                                    class="carousel-image carousel-image-left" alt="Energia Solar Fotovoltaica">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/solar-termica.jpeg" class="carousel-image carousel-image-left"
-                                    alt="Energia Solar Térmica">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/solar-concentrada.jpeg"
-                                    class="carousel-image carousel-image-left" alt="Energia solar concentrada">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-solar"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-solar"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-types card-right card-eolica">
-                <div class="card-displayed " onclick="toggleCard(this)">
-                    <img src="badges/badge-eolic.svg" alt="Energia Eólica">
-                    <div>
-                        <div class="d-flex flex-row gap-2 align-items-baseline">
-                            <h3>Eólica</h3>
-                            <p class="text-muted">clique para +</p>
-                        </div>
-                        <p>É a energia cinética gerada pela força dos ventos, não
-                            emite gases poluentes e contribui para a redução do efeito estufa.</p>
-                    </div>
-                </div>
-                <div class="card-displayed-after px-1 pb-1">
-                    <div class="card-displayed-after-div">
-                        <h2>Descrição completa</h2>
-                        <p>A energia eólica é obtida a partir do vento, que movimenta turbinas para gerar eletricidade.
-                            Essa
-                            energia é captada por meio de aerogeradores, instalados em parques eólicos terrestres ou
-                            offshore (no mar).
-
-                            Existem três principais tipos de sistemas:
-
-                            Parques Eólicos Terrestres: Instalações em terra firme, aproveitando áreas com ventos
-                            constantes.
-                            Parques Eólicos Offshore: Turbinas instaladas no mar, onde os ventos são mais fortes e
-                            constantes.
-                            Microturbinas Eólicas: Sistemas menores, usados para geração descentralizada de energia.
-                            A energia eólica é renovável e não poluente, mas a instalação de turbinas pode ter impactos
-                            visuais e afetar a fauna local, como aves.</p>
-                    </div>
-                    <div id="carousel-eolic" class="carousel slide carousel-fade card-displayed-after-div">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/carrossel/eolic-parque.jpeg" class="carousel-image carousel-image-right"
-                                    alt="Parques Eólicos Terrestres">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/eolic-mar.jpeg" class="carousel-image carousel-image-right"
-                                    alt="Parques eólicos offshore">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/eolic-micro.jpeg" class="carousel-image carousel-image-right"
-                                    alt="microturbinas eólicas">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-eolic"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-eolic"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-types card-left card-hidraulica">
-                <div class="card-displayed align-items-center" onclick="toggleCard(this)">
-                    <img src="badges/badge-hydraulic.svg" alt="Energia Hidráulica">
-                    <div>
-                        <div class="d-flex flex-row gap-2 align-items-baseline">
-                            <h3>Hidráulica</h3>
-                            <p class="text-muted">clique para +</p>
-                        </div>
-                        <p>É a energia gerada a partir do movimento das águas, como rios, lagos e mares. É uma fonte de
-                            energia limpa e renovável.</p>
-                    </div>
-                </div>
-                <div class="card-displayed-after px-1 pb-1">
-                    <div class="card-displayed-after-div">
-                        <h2>Descrição completa</h2>
-                        <p>A energia hidráulica é obtida a partir do movimento da água em rios e quedas d’água,
-                            utilizada
-                            para gerar eletricidade. Essa energia é aproveitada em usinas hidrelétricas e pequenas
-                            centrais
-                            hidrelétricas (PCHs).
-
-                            Existem três tipos principais de sistemas:
-
-                            Usinas de Reservatório: Utilizam represas para armazenar água e controlar o fluxo, acionando
-                            turbinas.
-                            Usinas a Fio d’Água: Aproveitam o fluxo natural do rio, sem necessidade de grandes represas.
-                            Pequenas Centrais (PCHs): Usinas menores com menor impacto ambiental.
-                            A energia hidráulica é renovável e eficiente, mas grandes represas podem causar alagamentos
-                            e
-                            afetar ecossistemas.</p>
-                    </div>
-                    <div id="carousel-hydro" class="carousel slide carousel-fade card-displayed-after-div">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/carrossel/hydro-reservatorio.jpeg"
-                                    class="carousel-image carousel-image-left" alt="Usinas de reservatório">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/hydro-fio.jpeg" class="carousel-image carousel-image-left"
-                                    alt="Usinas a fio d’Água">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/hydro-pch.jpg" class="carousel-image carousel-image-left"
-                                    alt="Pequenas centrais hidroelétricas">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-hydro"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-hydro"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card-types card-right card-biomassa">
-                <div class="card-displayed align-items-center" onclick="toggleCard(this)">
-                    <img src="badges/badge-biomass.svg" alt="Energia de Biomassa">
-                    <div>
-                        <div class="d-flex flex-row gap-2 align-items-baseline">
-                            <h3>Biomassa</h3>
-                            <p class="text-muted">clique para +</p>
-                        </div>
-                        <p>É a energia proveniente da queima de materiais orgânicos, como resíduos agrícolas, florestais
-                            e
-                            urbanos.</p>
-                    </div>
-                </div>
-                <div class="card-displayed-after px-1 pb-1">
-                    <div class="card-displayed-after-div">
-                        <h2>Descrição completa</h2>
-                        <p>A energia de biomassa é obtida a partir de matéria orgânica, como resíduos agrícolas,
-                            florestais
-                            e industriais, utilizada para produzir eletricidade, calor e biocombustíveis. A biomassa é
-                            aproveitada por meio de processos como combustão direta, gaseificação e fermentação.
-
-                            Existem três principais formas de conversão:
-
-                            Combustão Direta: Queima de biomassa para gerar calor e eletricidade em usinas.
-                            Gaseificação: Converte biomassa em gás de síntese (syngas), que pode ser utilizado em
-                            turbinas.
-                            Fermentação: Utiliza microrganismos para transformar biomassa em biocombustíveis, como
-                            etanol.
-                            A energia de biomassa é renovável e pode ajudar na redução de resíduos, mas sua queima pode
-                            liberar gases, exigindo controle para minimizar impactos ambientais.</p>
-                    </div>
-                    <div id="carousel-biomass" class="carousel slide carousel-fade card-displayed-after-div">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/carrossel/biomass-combustao.jpg"
-                                    class="carousel-image carousel-image-right" alt="Combustão direta">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/biomass-gasificacao.png"
-                                    class="carousel-image carousel-image-right" alt="Gaseificação">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carrossel/biomass-fermentacao.jpeg"
-                                    class="carousel-image carousel-image-right" alt="Fermentação">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-biomass"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-biomass"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+      <div class="cards">
+        <div data-aos="fade-right" class="card-types card-left card-solar">
+          <div class="card-displayed" onclick="toggleCard(this)">
+            <img src="badges/badge-solar.svg" alt="Energia Solar" />
             <div>
-                <div class="card-types card-left card-geotermica">
-                    <div class="card-displayed align-items-center" onclick="toggleCard(this)">
-                        <img src="badges/badge-geothermal.svg" alt="Energia Geotérmica">
-                        <div>
-                            <div class="d-flex flex-row gap-2 align-items-baseline">
-                                <h3>Geotérmica</h3>
-                                <p class="text-muted">clique para +</p>
-                            </div>
-                            <p>É a energia proveniente do calor do interior da Terra, que é aproveitada e utilizada por
-                                meio
-                                de
-                                diferentes tecnologias.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-displayed-after px-1 pb-1">
-                        <div class="card-displayed-after-div">
-                            <h2>Descrição completa</h2>
-                            <p>
-                                A energia geotérmica é obtida a partir do calor do interior da Terra, utilizado para
-                                gerar
-                                eletricidade e aquecer edifícios. Esse calor é aproveitado através de usinas geotérmicas
-                                e
-                                bombas de calor geotérmicas.
-
-                                Existem três tipos principais de sistemas:
-
-                                Usinas de Vapor Seco: Utilizam vapor diretamente do subsolo para acionar turbinas.
-                                Usinas de Flash: Aproveitam água quente que, ao subir, se transforma em vapor,
-                                movimentando
-                                turbinas.
-                                Usinas Binárias: Utilizam o calor para evaporar um fluido secundário, acionando a
-                                turbina.
-                                A energia geotérmica é renovável e eficiente, mas sua exploração é limitada a regiões
-                                com
-                                atividade geotérmica significativa.</p>
-                        </div>
-                        <div id="carousel-geo" class="carousel slide carousel-fade card-displayed-after-div">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="img/carrossel/geo-vapor.png" class="carousel-image carousel-image-left"
-                                        alt="Usina de vapor">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/carrossel/geo-flash.png" class="carousel-image carousel-image-left"
-                                        alt="Usina de flash">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-geo"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-geo"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-types card-right" id="card-maremotriz">
-                    <div class="card-displayed align-items-center" onclick="toggleCard(this)">
-                        <img src="badges/badge-tidal.svg" alt="Energia Maremotriz">
-                        <div>
-                            <div class="d-flex flex-row gap-2 align-items-baseline">
-                                <h3>Maremotriz</h3>
-                                <p class="text-muted">clique para +</p>
-                            </div>
-                            <p>É a energia proveniente do movimento das marés, que é aproveitada e utilizada por meio de
-                                barragens de maré, turbinas de maré, etc.</p>
-                        </div>
-                    </div>
-                    <div class="card-displayed-after px-1 pb-1">
-                        <div class="card-displayed-after-div">
-                            <h2>Descrição completa</h2>
-                            <p>A energia maremotriz é obtida a partir do movimento das marés, que
-                                ocorre devido à atração gravitacional entre a Terra, a Lua e o Sol. Esse tipo de energia
-                                é
-                                aproveitado por meio de barragens de maré, que funcionam como represas, e por turbinas
-                                submersas, que giram com o fluxo da água. Existem dois tipos principais de sistemas
-                                maremotrizes:
-
-                                Barragens de Maré: Utilizam diques para capturar a água durante a maré alta e liberá-la
-                                durante
-                                a maré baixa, movimentando turbinas e gerando eletricidade.
-                                Turbinas de Maré: Funcionam como turbinas eólicas submersas, sendo acionadas pelo fluxo
-                                das
-                                marés.
-                                A energia maremotriz é uma fonte renovável e previsível, uma vez que as marés seguem um
-                                padrão
-                                regular. No entanto, a instalação de sistemas maremotrizes pode ter impactos ambientais
-                                e
-                                exige
-                                altos custos iniciais, limitando seu uso a áreas com condições favoráveis, como
-                                estreitos e
-                                baías.</p>
-                        </div>
-                        <div id="carousel-tidal" class="carousel slide carousel-fade card-displayed-after-div">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="img/carrossel/mar-barragem.webp"
-                                        class="carousel-image carousel-image-right" alt="Barragem de maré">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/carrossel/mar-turbinas.jpeg"
-                                        class="carousel-image carousel-image-right" alt="Turbinas de maré">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-tidal"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-tidal"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-    </section>
-    <section id="beneficios-desafios">
-        <div class="cards-benef-desaf">
-            <div class="card-benef" onclick="toggleCardClick(this)">
-                <h3>Benefícios</h3>
-                <p>
-                    Os benefícios da energia limpa são inúmeros, destacando-se principalmente a <strong>redução das
-                        emissões de gases de efeito estufa</strong>, que contribui para combater as mudanças climáticas.
-                    Além disso, essas fontes de energia são <strong>renováveis e inesgotáveis</strong>, garantindo
-                    segurança energética a longo prazo. A energia limpa também gera <strong>menor impacto
-                        ambiental</strong>, evitando a poluição do ar e da água associada aos combustíveis fósseis.
-                    Outro benefício importante é a <strong>criação de empregos</strong>, impulsionando a economia verde
-                    e a inovação tecnológica. Por fim, a <strong>diversificação da matriz energética</strong> reduz a
-                    dependência de fontes poluentes e voláteis, trazendo estabilidade aos mercados de energia.
-                </p>
-
+              <div class="d-flex flex-row gap-2 align-items-baseline">
+                <h3>Solar</h3>
+                <p class="text-muted">clique para +</p>
+              </div>
+              <p>
+                É a energia proveniente da luz e do calor do Sol que é
+                aproveitada e utilizada por meio de diferentes tecnologias.
+              </p>
             </div>
-            <div class="card-desaf" onclick="toggleCardClick(this)">
-                <h3>Desafios</h3>
-                <p>
-                    Apesar dos muitos benefícios, a energia limpa enfrenta desafios significativos. Um dos maiores
-                    problemas é a <strong>dependência de condições naturais</strong>, como sol e vento, que podem ser
-                    intermitentes e imprevisíveis. Além disso, os <strong>altos custos iniciais de instalação</strong>
-                    de tecnologias como painéis solares e turbinas eólicas ainda são uma barreira para muitos países e
-                    comunidades. A <strong>armazenagem de energia</strong> também é um desafio, exigindo avanços em
-                    baterias e tecnologias de armazenamento para garantir fornecimento contínuo. Outro obstáculo é a
-                    <strong>infraestrutura existente</strong>, que muitas vezes precisa ser modernizada para suportar a
-                    integração de fontes renováveis. Por fim, há o <strong>impacto ambiental local</strong>, como a
-                    construção de hidrelétricas, que pode afetar ecossistemas e comunidades.
-                </p>
-
+          </div>
+          <div class="card-displayed-after px-1 pb-1">
+            <div class="card-displayed-after-div">
+              <h2>Descrição completa</h2>
+              <p>
+                A energia solar é obtida a partir da luz do sol, utilizada para
+                gerar eletricidade e aquecer ambientes. Essa energia é captada
+                por meio de painéis solares e coletores solares térmicos.
+                Existem três principais tipos de sistemas: Energia Solar
+                Fotovoltaica: Utiliza painéis fotovoltaicos para converter a luz
+                solar diretamente em eletricidade. Energia Solar Térmica:
+                Utiliza coletores solares para aquecer água e outros fluidos.
+                Energia Solar Concentrada (CSP): Usa espelhos para concentrar a
+                luz solar, gerando altas temperaturas para produzir
+                eletricidade. A energia solar é renovável e abundante, mas sua
+                eficiência depende da disponibilidade de luz solar e requer
+                áreas extensas para instalação dos painéis.
+              </p>
             </div>
+            <div
+              id="carousel-solar"
+              class="carousel slide carousel-fade card-displayed-after-div"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="img/carrossel/solar-fotovoltaica.jpeg"
+                    class="carousel-image carousel-image-left"
+                    alt="Energia Solar Fotovoltaica"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/solar-termica.jpeg"
+                    class="carousel-image carousel-image-left"
+                    alt="Energia Solar Térmica"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/solar-concentrada.jpeg"
+                    class="carousel-image carousel-image-left"
+                    alt="Energia solar concentrada"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carousel-solar"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carousel-solar"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
         </div>
+        <div data-aos="fade-left" class="card-types card-right card-eolica">
+          <div class="card-displayed" onclick="toggleCard(this)">
+            <img src="badges/badge-eolic.svg" alt="Energia Eólica" />
+            <div>
+              <div class="d-flex flex-row gap-2 align-items-baseline">
+                <h3>Eólica</h3>
+                <p class="text-muted">clique para +</p>
+              </div>
+              <p>
+                É a energia cinética gerada pela força dos ventos, não emite
+                gases poluentes e contribui para a redução do efeito estufa.
+              </p>
+            </div>
+          </div>
+          <div class="card-displayed-after px-1 pb-1">
+            <div class="card-displayed-after-div">
+              <h2>Descrição completa</h2>
+              <p>
+                A energia eólica é obtida a partir do vento, que movimenta
+                turbinas para gerar eletricidade. Essa energia é captada por
+                meio de aerogeradores, instalados em parques eólicos terrestres
+                ou offshore (no mar). Existem três principais tipos de sistemas:
+                Parques Eólicos Terrestres: Instalações em terra firme,
+                aproveitando áreas com ventos constantes. Parques Eólicos
+                Offshore: Turbinas instaladas no mar, onde os ventos são mais
+                fortes e constantes. Microturbinas Eólicas: Sistemas menores,
+                usados para geração descentralizada de energia. A energia eólica
+                é renovável e não poluente, mas a instalação de turbinas pode
+                ter impactos visuais e afetar a fauna local, como aves.
+              </p>
+            </div>
+            <div
+              id="carousel-eolic"
+              class="carousel slide carousel-fade card-displayed-after-div"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="img/carrossel/eolic-parque.jpeg"
+                    class="carousel-image carousel-image-right"
+                    alt="Parques Eólicos Terrestres"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/eolic-mar.jpeg"
+                    class="carousel-image carousel-image-right"
+                    alt="Parques eólicos offshore"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/eolic-micro.jpeg"
+                    class="carousel-image carousel-image-right"
+                    alt="microturbinas eólicas"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carousel-eolic"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carousel-eolic"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div data-aos="fade-right" class="card-types card-left card-hidraulica">
+          <div
+            class="card-displayed align-items-center"
+            onclick="toggleCard(this)"
+          >
+            <img src="badges/badge-hydraulic.svg" alt="Energia Hidráulica" />
+            <div>
+              <div class="d-flex flex-row gap-2 align-items-baseline">
+                <h3>Hidráulica</h3>
+                <p class="text-muted">clique para +</p>
+              </div>
+              <p>
+                É a energia gerada a partir do movimento das águas, como rios,
+                lagos e mares. É uma fonte de energia limpa e renovável.
+              </p>
+            </div>
+          </div>
+          <div class="card-displayed-after px-1 pb-1">
+            <div class="card-displayed-after-div">
+              <h2>Descrição completa</h2>
+              <p>
+                A energia hidráulica é obtida a partir do movimento da água em
+                rios e quedas d’água, utilizada para gerar eletricidade. Essa
+                energia é aproveitada em usinas hidrelétricas e pequenas
+                centrais hidrelétricas (PCHs). Existem três tipos principais de
+                sistemas: Usinas de Reservatório: Utilizam represas para
+                armazenar água e controlar o fluxo, acionando turbinas. Usinas a
+                Fio d’Água: Aproveitam o fluxo natural do rio, sem necessidade
+                de grandes represas. Pequenas Centrais (PCHs): Usinas menores
+                com menor impacto ambiental. A energia hidráulica é renovável e
+                eficiente, mas grandes represas podem causar alagamentos e
+                afetar ecossistemas.
+              </p>
+            </div>
+            <div
+              id="carousel-hydro"
+              class="carousel slide carousel-fade card-displayed-after-div"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="img/carrossel/hydro-reservatorio.jpeg"
+                    class="carousel-image carousel-image-left"
+                    alt="Usinas de reservatório"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/hydro-fio.jpeg"
+                    class="carousel-image carousel-image-left"
+                    alt="Usinas a fio d’Água"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/hydro-pch.jpg"
+                    class="carousel-image carousel-image-left"
+                    alt="Pequenas centrais hidroelétricas"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carousel-hydro"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carousel-hydro"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div data-aos="fade-left" class="card-types card-right card-biomassa">
+          <div
+            class="card-displayed align-items-center"
+            onclick="toggleCard(this)"
+          >
+            <img src="badges/badge-biomass.svg" alt="Energia de Biomassa" />
+            <div>
+              <div class="d-flex flex-row gap-2 align-items-baseline">
+                <h3>Biomassa</h3>
+                <p class="text-muted">clique para +</p>
+              </div>
+              <p>
+                É a energia proveniente da queima de materiais orgânicos, como
+                resíduos agrícolas, florestais e urbanos.
+              </p>
+            </div>
+          </div>
+          <div class="card-displayed-after px-1 pb-1">
+            <div class="card-displayed-after-div">
+              <h2>Descrição completa</h2>
+              <p>
+                A energia de biomassa é obtida a partir de matéria orgânica,
+                como resíduos agrícolas, florestais e industriais, utilizada
+                para produzir eletricidade, calor e biocombustíveis. A biomassa
+                é aproveitada por meio de processos como combustão direta,
+                gaseificação e fermentação. Existem três principais formas de
+                conversão: Combustão Direta: Queima de biomassa para gerar calor
+                e eletricidade em usinas. Gaseificação: Converte biomassa em gás
+                de síntese (syngas), que pode ser utilizado em turbinas.
+                Fermentação: Utiliza microrganismos para transformar biomassa em
+                biocombustíveis, como etanol. A energia de biomassa é renovável
+                e pode ajudar na redução de resíduos, mas sua queima pode
+                liberar gases, exigindo controle para minimizar impactos
+                ambientais.
+              </p>
+            </div>
+            <div
+              id="carousel-biomass"
+              class="carousel slide carousel-fade card-displayed-after-div"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="img/carrossel/biomass-combustao.jpg"
+                    class="carousel-image carousel-image-right"
+                    alt="Combustão direta"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/biomass-gasificacao.png"
+                    class="carousel-image carousel-image-right"
+                    alt="Gaseificação"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="img/carrossel/biomass-fermentacao.jpeg"
+                    class="carousel-image carousel-image-right"
+                    alt="Fermentação"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carousel-biomass"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carousel-biomass"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div data-aos="fade-right" class="card-types card-left card-geotermica">
+            <div
+              class="card-displayed align-items-center"
+              onclick="toggleCard(this)"
+            >
+              <img src="badges/badge-geothermal.svg" alt="Energia Geotérmica" />
+              <div>
+                <div class="d-flex flex-row gap-2 align-items-baseline">
+                  <h3>Geotérmica</h3>
+                  <p class="text-muted">clique para +</p>
+                </div>
+                <p>
+                  É a energia proveniente do calor do interior da Terra, que é
+                  aproveitada e utilizada por meio de diferentes tecnologias.
+                </p>
+              </div>
+            </div>
+            <div class="card-displayed-after px-1 pb-1">
+              <div class="card-displayed-after-div">
+                <h2>Descrição completa</h2>
+                <p>
+                  A energia geotérmica é obtida a partir do calor do interior da
+                  Terra, utilizado para gerar eletricidade e aquecer edifícios.
+                  Esse calor é aproveitado através de usinas geotérmicas e
+                  bombas de calor geotérmicas. Existem três tipos principais de
+                  sistemas: Usinas de Vapor Seco: Utilizam vapor diretamente do
+                  subsolo para acionar turbinas. Usinas de Flash: Aproveitam
+                  água quente que, ao subir, se transforma em vapor,
+                  movimentando turbinas. Usinas Binárias: Utilizam o calor para
+                  evaporar um fluido secundário, acionando a turbina. A energia
+                  geotérmica é renovável e eficiente, mas sua exploração é
+                  limitada a regiões com atividade geotérmica significativa.
+                </p>
+              </div>
+              <div
+                id="carousel-geo"
+                class="carousel slide carousel-fade card-displayed-after-div"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="img/carrossel/geo-vapor.png"
+                      class="carousel-image carousel-image-left"
+                      alt="Usina de vapor"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="img/carrossel/geo-flash.png"
+                      class="carousel-image carousel-image-left"
+                      alt="Usina de flash"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carousel-geo"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carousel-geo"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div data-aos="fade-left" class="card-types card-right" id="card-maremotriz">
+            <div
+              class="card-displayed align-items-center"
+              onclick="toggleCard(this)"
+            >
+              <img src="badges/badge-tidal.svg" alt="Energia Maremotriz" />
+              <div>
+                <div class="d-flex flex-row gap-2 align-items-baseline">
+                  <h3>Maremotriz</h3>
+                  <p class="text-muted">clique para +</p>
+                </div>
+                <p>
+                  É a energia proveniente do movimento das marés, que é
+                  aproveitada e utilizada por meio de barragens de maré,
+                  turbinas de maré, etc.
+                </p>
+              </div>
+            </div>
+            <div class="card-displayed-after px-1 pb-1">
+              <div class="card-displayed-after-div">
+                <h2>Descrição completa</h2>
+                <p>
+                  A energia maremotriz é obtida a partir do movimento das marés,
+                  que ocorre devido à atração gravitacional entre a Terra, a Lua
+                  e o Sol. Esse tipo de energia é aproveitado por meio de
+                  barragens de maré, que funcionam como represas, e por turbinas
+                  submersas, que giram com o fluxo da água. Existem dois tipos
+                  principais de sistemas maremotrizes: Barragens de Maré:
+                  Utilizam diques para capturar a água durante a maré alta e
+                  liberá-la durante a maré baixa, movimentando turbinas e
+                  gerando eletricidade. Turbinas de Maré: Funcionam como
+                  turbinas eólicas submersas, sendo acionadas pelo fluxo das
+                  marés. A energia maremotriz é uma fonte renovável e
+                  previsível, uma vez que as marés seguem um padrão regular. No
+                  entanto, a instalação de sistemas maremotrizes pode ter
+                  impactos ambientais e exige altos custos iniciais, limitando
+                  seu uso a áreas com condições favoráveis, como estreitos e
+                  baías.
+                </p>
+              </div>
+              <div
+                id="carousel-tidal"
+                class="carousel slide carousel-fade card-displayed-after-div"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="img/carrossel/mar-barragem.webp"
+                      class="carousel-image carousel-image-right"
+                      alt="Barragem de maré"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="img/carrossel/mar-turbinas.jpeg"
+                      class="carousel-image carousel-image-right"
+                      alt="Turbinas de maré"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carousel-tidal"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carousel-tidal"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <section id="beneficios-desafios">
+      <div class="cards-benef-desaf">
+        <div class="card-benef" data-aos="zoom-in-right" data-aos-duration="500" onclick="toggleCardClick(this)">
+          <h3>Benefícios</h3>
+          <p>
+            Os benefícios da energia limpa são inúmeros, destacando-se
+            principalmente a
+            <strong>redução das emissões de gases de efeito estufa</strong>, que
+            contribui para combater as mudanças climáticas. Além disso, essas
+            fontes de energia são <strong>renováveis e inesgotáveis</strong>,
+            garantindo segurança energética a longo prazo. A energia limpa
+            também gera <strong>menor impacto ambiental</strong>, evitando a
+            poluição do ar e da água associada aos combustíveis fósseis. Outro
+            benefício importante é a <strong>criação de empregos</strong>,
+            impulsionando a economia verde e a inovação tecnológica. Por fim, a
+            <strong>diversificação da matriz energética</strong> reduz a
+            dependência de fontes poluentes e voláteis, trazendo estabilidade
+            aos mercados de energia.
+          </p>
+        </div>
+        <div class="card-desaf" data-aos="zoom-in-left" data-aos-duration="500" onclick="toggleCardClick(this)">
+          <h3>Desafios</h3>
+          <p>
+            Apesar dos muitos benefícios, a energia limpa enfrenta desafios
+            significativos. Um dos maiores problemas é a
+            <strong>dependência de condições naturais</strong>, como sol e
+            vento, que podem ser intermitentes e imprevisíveis. Além disso, os
+            <strong>altos custos iniciais de instalação</strong> de tecnologias
+            como painéis solares e turbinas eólicas ainda são uma barreira para
+            muitos países e comunidades. A
+            <strong>armazenagem de energia</strong> também é um desafio,
+            exigindo avanços em baterias e tecnologias de armazenamento para
+            garantir fornecimento contínuo. Outro obstáculo é a
+            <strong>infraestrutura existente</strong>, que muitas vezes precisa
+            ser modernizada para suportar a integração de fontes renováveis. Por
+            fim, há o <strong>impacto ambiental local</strong>, como a
+            construção de hidrelétricas, que pode afetar ecossistemas e
+            comunidades.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="use-greenflow">
+      <div class="mockups">
+        <img src="img/mockups/mobile.svg" alt="" class="mockups-mobile" data-aos="flip-right" data-aos-anchor-placement="top-bottom" />
+        <img src="img/mockups/desktop.svg" alt="" class="mockups-desktop" data-aos="flip-left" data-aos-anchor-placement="top-bottom"/>
+      </div>
+      <h2 data-aos="fade-up" data-aos-duration="100">
+        A energia limpa e o gasto consciente são fatores cruciais para a
+        humanidade
+        <p data-aos="fade-up" data-aos-duration="100">e também seu bolso!</p>
+      </h2>
+      <p data-aos="fade-up" data-aos-duration="300">
+        pensando nisso a GreenFlow criou um monitorador de consumo energético
+        com dicas e sugestões para gastar menos energia e migrar para energias
+        limpas, melhorando o seu bolso e o nosso mundo.
+      </p>
+      <div class="use-greenflow-hero">
+        <h3 data-aos="fade-up" data-aos-duration="500">Energize seu futuro</h3>
+        <a data-aos="fade-up" data-aos-duration="2000" href="linkparagreenflow">Use GreenFlow</a>
+      </div>
+    </section>
 
+    <footer class="py-4">
+        <div class="container">
+          <div class="row text-center text-md-left">
+            <div class="col-md-4 mb-3 mb-md-0">
+              <div class="footer-logo">
+                <img src="img/logo_green_flow.svg" alt="GreenFlow" class="img-fluid">
+              </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+              <div class="footer-links">
+                <a href="#" class="d-block mb-2">Introdução</a>
+                <a href="#tipos" class="d-block mb-2">Tipos</a>
+                <a href="#" class="d-block mb-2">Benefícios</a>
+                <a href="#" class="d-block mb-2">Use GreenFlow</a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="footer-social">
+                <a href="#" class="d-inline-block mr-3">
+                  <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="d-inline-block mr-3">
+                  <i class="bi bi-twitter"></i>
+                </a>
+                <a href="#" class="d-inline-block mr-3">
+                  <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" class="d-inline-block">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 text-center">
+              <p class="mb-0">&copy; 2023 GreenFlow. Todos os direitos reservados.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
